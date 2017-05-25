@@ -1,0 +1,35 @@
+
+========================================
+Generating jar file from within Eclipse:
+========================================
+
+Eclipse has a build-in option to generate runnable jars, but it is well hidden. 
+Also it does not recognize Scala's main() signatures, so you will have to create a Java class 
+with a main() method.
+
+Create a Java class with a main() method which simply forwards the call to 
+your Scala code.
+
+Then right click on your newly created Java class and select: 
+Run As -> Java Application. This will create a runnable configuration 
+which will later be used as a part of your runnable jar.
+
+Now you are ready to dig out the runnable jar option from the Eclipse's menu: 
+File -> Export -> Java -> Runnable JAR file
+
+In the presented dialog select the Launch Configuration you have created 
+earlier (in step2), name your jar (myapp.jar), select your dependency export 
+options and click finish.
+
+The jar will be created in the Eclipse's workspace by default.
+
+Run the jar using the line: scala myapp.jar
+
+====================
+Generating scaladoc:
+====================
+
+This is done from the command line:
+
+scaladoc -d doc src/rete/*.scala src/rete/graphviz/*.scala
+

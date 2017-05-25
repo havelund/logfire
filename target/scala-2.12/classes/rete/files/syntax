@@ -1,0 +1,64 @@
+
+=======
+My QEA:
+=======
+
+class FileMonitor extends QEA {
+  Exists('x)
+
+  1 - 'command('x) -> 2
+  2 - 'command('y) -> 3
+  2 - 'success('x) -> 4
+
+  accepts(4)
+}
+
+==============
+QEA Augmented:
+==============
+
+class KnowTopology extends QPEA with Names {
+  val init = s1
+  val F = Set(s3,s4)
+  
+  val TempVars = Set(time)
+  val Patterns = Set(a1,a2)
+
+  val T = 100
+  val timeGreaterThanT = (i : Inst,e : Env)=> (java.lang.System.currentTimeMillis - e(time).asInstanceOf[Long]) > T
+  val timeLessOrEqualT = (i : Inst,e : Env)=> (java.lang.System.currentTimeMillis - e(time).asInstanceOf[Long]) <= T
+  val a1NotEqualsA2 = (i : Inst,e : Env)=> i(a1).asInstanceOf[Int] != i(a2).asInstanceOf[Int]
+  val a1EqualsA2 = (i : Inst,e : Env)=> i(a1).asInstanceOf[Int] == i(a2).asInstanceOf[Int]
+  
+  val setTime = (i:Inst,e:Env) => e + (time -> java.lang.System.currentTimeMillis)
+  
+  val delta = Set(
+    s1 -(ping(a1,a2),a1NotEqualsA2,setTime)-> s2,
+    s1 -(ping(a1,a2),a1EqualsA2,emptyS)-> s4,
+    s2 -(ping(a1,a2),trueC,setTime)-> s2,
+    s2 -(ack(a2,a1),timeGreaterThanT,emptyS)-> s2,
+    s2 -(ack(a2,a1),timeLessOrEqualT,emptyS)-> s3
+  )
+  
+  val quant = List((exists,a1),(forAll, a2))
+}
+
+===========
+Discussion:
+===========
+
+Some questions here:
+
+- The RETE algorithm is based on sharing between rules, which makes modular
+  composition a challenge it seems. Basically: all rules in one module. Or is that correct?
+
+- This notion of modularization is important for the notion of side effects. Do we allow side effects:
+  code to be executed as a result of taking a transition? Is that state local to a set of rules?
+  It would be much preferable.
+  
+- Do we maintain our own model-state or do we allow arbitrary Scala code to be written. I am
+  in favor of the latter, in contrast to what is done in Augmented QEA. However, that code should be allowed
+  to refer to the variables bound in the rule.
+  
+- Variables are not typed. Should they be?
+

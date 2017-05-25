@@ -1,0 +1,2263 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>Monitor - rete.Monitor</title>
+          <meta name="description" content="Monitor - rete.Monitor" />
+          <meta name="keywords" content="Monitor rete.Monitor" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../lib/template.js"></script>
+      <script type="text/javascript" src="../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../index.html';
+            var hash = 'rete.Monitor';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <img alt="Class" src="../lib/class_big.png" />
+        <p id="owner"><a href="package.html" class="extype" name="rete">rete</a></p>
+        <h1>Monitor</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="rete">package rete</a>
+          </div></span></h3><span class="permalink">
+      <a href="../index.html#rete.Monitor" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Monitor</span><span class="result"> extends <a href="Logic.html" class="extype" name="rete.Logic">Logic</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This class offers all of the main features of LogFire. See the package tutorial for a description of its use.
+It extends the classes <code>Options</code> - offering
+the user modifiable options - and <code>Logic</code>  - offering the DSL for writing rules. In addition
+this class offers methods for adding events and facts to the monitor state, as well as removing facts.
+Furthermore if offers methods for writing (serialize) the fact memory to permanent store and for loading facts from
+such permanent store.
+</p></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="Logic.html" class="extype" name="rete.Logic">Logic</a>, <span class="extype" name="rete.Rete">Rete</span>, <span class="extype" name="rete.graphviz.Visual">Visual</span>, <a href="Options.html" class="extype" name="rete.Options">Options</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="rete.Monitor"><span>Monitor</span></li><li class="in" name="rete.Logic"><span>Logic</span></li><li class="in" name="rete.Rete"><span>Rete</span></li><li class="in" name="rete.graphviz.Visual"><span>Visual</span></li><li class="in" name="rete.Options"><span>Options</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="rete.Monitor#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():rete.Monitor"></a>
+      <a id="&lt;init&gt;:Monitor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Monitor</span><span class="params">()</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@&lt;init&gt;():rete.Monitor" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="rete.Logic.+" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="+[T]=Either[T,Symbol]"></a>
+      <a id="+[T]:+[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $plus" class="name">+</span><span class="tparams">[<span name="T">T</span>]</span><span class="result"> = <span class="extype" name="scala.util.Either">Either</span>[<span class="extype" name="rete.Logic.+.T">T</span>, <span class="extype" name="scala.Symbol">Symbol</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@+[T]=Either[T,Symbol]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The extension of a type <code>T</code> with variable patterns of type <code>Symbol</code>,
+such as <code>'s</code>, <code>'name</code>, etc.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>The extension of a type <code>T</code> with variable patterns of type <code>Symbol</code>,
+such as <code>'s</code>, <code>'name</code>, etc. This type is used to define parameters
+to case classes representing observations (extending class <code>Obs</code>), which then can
+be used as events and facts in rules.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic.Binding" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Binding=Map[Symbol,Any]"></a>
+      <a id="Binding:Binding"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Binding</span><span class="result"> = <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@Binding=Map[Symbol,Any]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The type of the argument to an event or fact: a mapping from fields to their values.</p><div class="fullcomment"><div class="comment cmt"><p>The type of the argument to an event or fact: a mapping from fields to their values.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic.ConditionArguments" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ConditionArgumentsextendsAnyRef"></a>
+      <a id="ConditionArguments:ConditionArguments"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Logic$ConditionArguments.html"><span class="name">ConditionArguments</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Logic@ConditionArgumentsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The class defines an <code>apply</code> method, which processes the arguments provided to
+it, together with the kind, to form a condition/fact.</code></p><div class="fullcomment"><div class="comment cmt"><p>The class defines an <code>apply</code> method, which processes the arguments provided to
+it, together with the kind, to form a condition/fact. See the implicit function
+<code>kindToConditionArguments</code>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic.Obs" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ObsextendsAnyRef"></a>
+      <a id="Obs:Obs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Logic$Obs.html"><span class="name">Obs</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Logic@ObsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Type of <i>observations</i>, representing events as well as facts defined as case classes.</p><div class="fullcomment"><div class="comment cmt"><p>Type of <i>observations</i>, representing events as well as facts defined as case classes.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic.RuleConditions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="RuleConditionsextendsAnyRef"></a>
+      <a id="RuleConditions:RuleConditions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Logic$RuleConditions.html"><span class="name">RuleConditions</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Logic@RuleConditionsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class offers methods for defining a rule in terms of its conditions (left-hand side)
+and a final action (right-hand side).</p><div class="fullcomment"><div class="comment cmt"><p>This class offers methods for defining a rule in terms of its conditions (left-hand side)
+and a final action (right-hand side).
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic.RuleDefinition" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="RuleDefinitionextendsAnyRef"></a>
+      <a id="RuleDefinition:RuleDefinition"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Logic$RuleDefinition.html"><span class="name">RuleDefinition</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Logic@RuleDefinitionextendsAnyRef" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class provides an method that when applied to a condition, the first condition
+in a rule, returns an object allowing to define the complete rule with the remaining
+conditions and action.</p><div class="fullcomment"><div class="comment cmt"><p>This class provides an method that when applied to a condition, the first condition
+in a rule, returns an object allowing to define the complete rule with the remaining
+conditions and action.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic.SymbolOperations" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SymbolOperationsextendsAnyRef"></a>
+      <a id="SymbolOperations:SymbolOperations"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Logic$SymbolOperations.html"><span class="name">SymbolOperations</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Logic@SymbolOperationsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class provides operations on a symbol for accessing the value it has been
+bound to on the left-hand side of a rule.</p><div class="fullcomment"><div class="comment cmt"><p>This class provides operations on a symbol for accessing the value it has been
+bound to on the left-hand side of a rule.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic.SyntaxException" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SyntaxExceptionextendsRuntimeException"></a>
+      <a id="SyntaxException:SyntaxException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Logic$SyntaxException.html"><span class="name">SyntaxException</span></a><span class="result"> extends <span class="extype" name="scala.RuntimeException">RuntimeException</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Logic@SyntaxExceptionextendsRuntimeException" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An exception of this class is thrown in case a syntax error in the rule specification
+is detected.</p><div class="fullcomment"><div class="comment cmt"><p>An exception of this class is thrown in case a syntax error in the rule specification
+is detected.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@##():Int" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="rete.Logic#ANY" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ANY:Symbol"></a>
+      <a id="ANY:Symbol"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ANY</span><span class="result">: <span class="extype" name="scala.Symbol">Symbol</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@ANY:Symbol" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Symbol that will match any kind of symbol occurring as <code>'kind</code> symbol in
+an event or fact.</code></p><div class="fullcomment"><div class="comment cmt"><p>Symbol that will match any kind of symbol occurring as <code>'kind</code> symbol in
+an event or fact. For example <code>ANY()</code> will match any event or fact.
+In case the condition has parameters, as in <code>ANY('x,'y)</code> the event or fact that it is matched
+against will only match if it has at least two parameters. Note that
+<code>ANY(... some pattern ...)</code> will match any events or facts, not just events.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Options#COLOR" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="COLOR:Boolean"></a>
+      <a id="COLOR:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">COLOR</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@COLOR:Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">When set to true: various messages will be printed out in colors.</p><div class="fullcomment"><div class="comment cmt"><p>When set to true: various messages will be printed out in colors.
+If the output medium does not support color printing, color characters will appear anyway,
+which will be confusing. Therefore the default value is false.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Options.html" class="extype" name="rete.Options">Options</a></dd></dl></div>
+    </li><li name="rete.Monitor#END" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="END:Symbol"></a>
+      <a id="END:Symbol"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">END</span><span class="result">: <span class="extype" name="scala.Symbol">Symbol</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@END:Symbol" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The end symbol, which is emitted on a call of <code>terminate()</code>.</code></p><div class="fullcomment"><div class="comment cmt"><p>The end symbol, which is emitted on a call of <code>terminate()</code>.
+The symbol can be used on the left-hand side of rules, which then may get
+triggered on the termination of monitoring, depending on what other conditions
+occur on the rule left-hand side.
+</p></div></div>
+    </li><li name="rete.Options#HISTORY" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="HISTORY:Boolean"></a>
+      <a id="HISTORY:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">HISTORY</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@HISTORY:Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">When set to true: will for each generated fact store the set of events and facts
+that led to the generation of this fact.</p><div class="fullcomment"><div class="comment cmt"><p>When set to true: will for each generated fact store the set of events and facts
+that led to the generation of this fact. This history information will for example be printed as
+error traces when errors are reported. The flag is by default set to true. It is recommended to
+set it to false in case time and memory usage becomes a problem.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Options.html" class="extype" name="rete.Options">Options</a></dd></dl></div>
+    </li><li name="rete.Options#PRINT" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PRINT:Boolean"></a>
+      <a id="PRINT:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PRINT</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@PRINT:Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">When set to true: will have the same effect as setting both PRINT_EVENTS
+and PRINT_FACTS to true.</p><div class="fullcomment"><div class="comment cmt"><p>When set to true: will have the same effect as setting both PRINT_EVENTS
+and PRINT_FACTS to true.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Options.html" class="extype" name="rete.Options">Options</a></dd></dl></div>
+    </li><li name="rete.Options#PRINT_EVENTS" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PRINT_EVENTS:Boolean"></a>
+      <a id="PRINT_EVENTS:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PRINT_EVENTS</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@PRINT_EVENTS:Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">When set to true: will cause printing of consumed events and user-added facts.</p><div class="fullcomment"><div class="comment cmt"><p>When set to true: will cause printing of consumed events and user-added facts.
+Is by default set to false.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Options.html" class="extype" name="rete.Options">Options</a></dd></dl></div>
+    </li><li name="rete.Options#PRINT_FACTS" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PRINT_FACTS:Boolean"></a>
+      <a id="PRINT_FACTS:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PRINT_FACTS</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@PRINT_FACTS:Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">When set to true: will cause printing of fact memory after each event/fact processed.</p><div class="fullcomment"><div class="comment cmt"><p>When set to true: will cause printing of fact memory after each event/fact processed.
+It is by default set to false.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Options.html" class="extype" name="rete.Options">Options</a></dd></dl></div>
+    </li><li name="rete.Options#PRINT_PROGRESS" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PRINT_PROGRESS:Boolean"></a>
+      <a id="PRINT_PROGRESS:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PRINT_PROGRESS</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@PRINT_PROGRESS:Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">When set to true: will cause printing of error messages, and other progress information,
+on standard out.</p><div class="fullcomment"><div class="comment cmt"><p>When set to true: will cause printing of error messages, and other progress information,
+on standard out. The flag is by default set to true. It can be set to false in cases,
+where results are processed in other ways automatically, for example in tests.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Options.html" class="extype" name="rete.Options">Options</a></dd></dl></div>
+    </li><li name="rete.Options#STOP_AFTER_FAIL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="STOP_AFTER_FAIL:Boolean"></a>
+      <a id="STOP_AFTER_FAIL:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">STOP_AFTER_FAIL</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@STOP_AFTER_FAIL:Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">When set to true: will cause the monitor to stop after the first error in the trace has
+been encountered.</p><div class="fullcomment"><div class="comment cmt"><p>When set to true: will cause the monitor to stop after the first error in the trace has
+been encountered. If false, the monitor will continue monitoring the trace after a fail.
+The flag is by default set to false.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Options.html" class="extype" name="rete.Options">Options</a></dd></dl></div>
+    </li><li name="rete.Logic#add" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="add(pc:rete.PC):rete.Action"></a>
+      <a id="add(PC):Action"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">add</span><span class="params">(<span name="pc">pc: <a href="PC.html" class="extype" name="rete.PC">PC</a></span>)</span><span class="result">: <span class="extype" name="rete.Action">Action</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@add(pc:rete.PC):rete.Action" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates an action that adds a fact to the fact memory.</p><div class="fullcomment"><div class="comment cmt"><p>Creates an action that adds a fact to the fact memory.
+</p></div><dl class="paramcmts block"><dt class="param">pc</dt><dd class="cmt"><p>the fact to be added.</p></dd><dt>returns</dt><dd class="cmt"><p>the add action.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Monitor#addEvent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addEvent(kind:Symbol)(values:Any*):Unit"></a>
+      <a id="addEvent(Symbol)(Any*):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addEvent</span><span class="params">(<span name="kind">kind: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="params">(<span name="values">values: <span class="extype" name="scala.Any">Any</span>*</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addEvent(kind:Symbol)(values:Any*):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Submits an event to the monitor.</p><div class="fullcomment"><div class="comment cmt"><p>Submits an event to the monitor. The event is represented by a kind and then a list
+of values, representing an event with positional (un-named) parameters.
+</p></div><dl class="paramcmts block"><dt class="param">kind</dt><dd class="cmt"><p>the event kind.</p></dd><dt class="param">values</dt><dd class="cmt"><p>the arguments of the event.</p></dd></dl></div>
+    </li><li name="rete.Monitor#addFact" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addFact(kind:Symbol)(values:Any*):rete.Fact"></a>
+      <a id="addFact(Symbol)(Any*):Fact"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addFact</span><span class="params">(<span name="kind">kind: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="params">(<span name="values">values: <span class="extype" name="scala.Any">Any</span>*</span>)</span><span class="result">: <a href="Fact.html" class="extype" name="rete.Fact">Fact</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addFact(kind:Symbol)(values:Any*):rete.Fact" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Adds a fact to the fact memory.</p><div class="fullcomment"><div class="comment cmt"><p>Adds a fact to the fact memory. The fact is represented by a kind and then a list
+of values, representing a fact with positional (un-named) parameters.
+</p></div><dl class="paramcmts block"><dt class="param">kind</dt><dd class="cmt"><p>the fact kind.</p></dd><dt class="param">values</dt><dd class="cmt"><p>the arguments of the fact.</p></dd><dt>returns</dt><dd class="cmt"><p>a reference to the fact that has just been added. This reference can be used to
+        later remove the fact.</p></dd></dl></div>
+    </li><li name="rete.Monitor#addMapEvent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addMapEvent(kind:Symbol)(fields:(Symbol,Any)*):Unit"></a>
+      <a id="addMapEvent(Symbol)((Symbol,Any)*):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addMapEvent</span><span class="params">(<span name="kind">kind: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="params">(<span name="fields">fields: (<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>)*</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addMapEvent(kind:Symbol)(fields:(Symbol,Any)*):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Submits an event to the monitor.</p><div class="fullcomment"><div class="comment cmt"><p>Submits an event to the monitor. The event is represented by a kind and then a list
+of field-value pairs, in essence representing a map from fields to values.
+</p></div><dl class="paramcmts block"><dt class="param">kind</dt><dd class="cmt"><p>the event kind.</p></dd><dt class="param">fields</dt><dd class="cmt"><p>the field-value pairs representing the contents of the event.</p></dd></dl></div>
+    </li><li name="rete.Monitor#addMapEvent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addMapEvent(fields:(Symbol,Any)*):Unit"></a>
+      <a id="addMapEvent((Symbol,Any)*):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addMapEvent</span><span class="params">(<span name="fields">fields: (<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>)*</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addMapEvent(fields:(Symbol,Any)*):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Submits an event to the monitor.</p><div class="fullcomment"><div class="comment cmt"><p>Submits an event to the monitor. The event is represented as a list of field-value pairs,
+in essence representing a map from fields to values.
+</p></div><dl class="paramcmts block"><dt class="param">fields</dt><dd class="cmt"><p>the field-value pairs representing the map.</p></dd></dl></div>
+    </li><li name="rete.Monitor#addMapEvent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addMapEvent(map:Map[Symbol,Any]):Unit"></a>
+      <a id="addMapEvent(Map[Symbol,Any]):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addMapEvent</span><span class="params">(<span name="map">map: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addMapEvent(map:Map[Symbol,Any]):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Submits an event to the monitor.</p><div class="fullcomment"><div class="comment cmt"><p>Submits an event to the monitor. The event is represented as a map.
+</p></div><dl class="paramcmts block"><dt class="param">map</dt><dd class="cmt"><p>the map representing the event.</p></dd></dl></div>
+    </li><li name="rete.Monitor#addMapFact" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addMapFact(kind:Symbol)(fields:(Symbol,Any)*):rete.Fact"></a>
+      <a id="addMapFact(Symbol)((Symbol,Any)*):Fact"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addMapFact</span><span class="params">(<span name="kind">kind: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="params">(<span name="fields">fields: (<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>)*</span>)</span><span class="result">: <a href="Fact.html" class="extype" name="rete.Fact">Fact</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addMapFact(kind:Symbol)(fields:(Symbol,Any)*):rete.Fact" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Adds a fact to the fact memory.</p><div class="fullcomment"><div class="comment cmt"><p>Adds a fact to the fact memory. The fact is represented by a kind and then a list
+of field-value pairs, in essence representing a map from fields to values.
+</p></div><dl class="paramcmts block"><dt class="param">kind</dt><dd class="cmt"><p>the fact kind.</p></dd><dt class="param">fields</dt><dd class="cmt"><p>the field-value pairs representing the contents of the fact.</p></dd><dt>returns</dt><dd class="cmt"><p>a reference to the fact that has just been added. This reference can be used to
+        later remove the fact.</p></dd></dl></div>
+    </li><li name="rete.Monitor#addMapFact" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addMapFact(fields:(Symbol,Any)*):rete.Fact"></a>
+      <a id="addMapFact((Symbol,Any)*):Fact"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addMapFact</span><span class="params">(<span name="fields">fields: (<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>)*</span>)</span><span class="result">: <a href="Fact.html" class="extype" name="rete.Fact">Fact</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addMapFact(fields:(Symbol,Any)*):rete.Fact" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Adds a fact to the fact memory.</p><div class="fullcomment"><div class="comment cmt"><p>Adds a fact to the fact memory. The fact is represented as a list of field-value pairs,
+in essence representing a map from fields to values.
+</p></div><dl class="paramcmts block"><dt class="param">fields</dt><dd class="cmt"><p>the field-value pairs representing the map.</p></dd><dt>returns</dt><dd class="cmt"><p>a reference to the fact that has just been added. This reference can be used to
+        later remove the fact.</p></dd></dl></div>
+    </li><li name="rete.Monitor#addMapFact" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addMapFact(map:Map[Symbol,Any]):rete.Fact"></a>
+      <a id="addMapFact(Map[Symbol,Any]):Fact"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addMapFact</span><span class="params">(<span name="map">map: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result">: <a href="Fact.html" class="extype" name="rete.Fact">Fact</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addMapFact(map:Map[Symbol,Any]):rete.Fact" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Adds a fact to the fact memory.</p><div class="fullcomment"><div class="comment cmt"><p>Adds a fact to the fact memory. The fact is represented by a map.
+</p></div><dl class="paramcmts block"><dt class="param">map</dt><dd class="cmt"><p>the map representing the fact.</p></dd><dt>returns</dt><dd class="cmt"><p>a reference to the fact that has just been added. This reference can be used to
+        later remove the fact.</p></dd></dl></div>
+    </li><li name="rete.Monitor#addObjEvent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addObjEvent(obj:Any):Unit"></a>
+      <a id="addObjEvent(Any):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addObjEvent</span><span class="params">(<span name="obj">obj: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addObjEvent(obj:Any):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Submits an event represented as an object to the monitor.</p><div class="fullcomment"><div class="comment cmt"><p>Submits an event represented as an object to the monitor. The object is converted into a map of
+type <code>Map[Symbol,Any]</code>, mapping object field names (converted to symbols) to the values
+they denote in the object.
+</p></div><dl class="paramcmts block"><dt class="param">obj</dt><dd class="cmt"><p>the object representing an event.</p></dd></dl></div>
+    </li><li name="rete.Monitor#addObjFact" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addObjFact(obj:Any):Unit"></a>
+      <a id="addObjFact(Any):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addObjFact</span><span class="params">(<span name="obj">obj: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addObjFact(obj:Any):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Submits a fact represented as an object to the monitor.</p><div class="fullcomment"><div class="comment cmt"><p>Submits a fact represented as an object to the monitor. The object is converted into a map of
+type <code>Map[Symbol,Any]</code>, mapping object field names (converted to symbols) to the values
+they denote in the object.
+</p></div><dl class="paramcmts block"><dt class="param">obj</dt><dd class="cmt"><p>the object representing a fact.</p></dd></dl></div>
+    </li><li name="rete.Logic#addRule" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addRule(name:String,conditions:List[(Boolean,Symbol,Map[Symbol,Any],Symbol)],action:Unit=&gt;Any):Unit"></a>
+      <a id="addRule(String,List[(Boolean,Symbol,Map[Symbol,Any],Symbol)],(Unit)⇒Any):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addRule</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conditions">conditions: <span class="extype" name="scala.List">List</span>[(<span class="extype" name="scala.Boolean">Boolean</span>, <span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>], <span class="extype" name="scala.Symbol">Symbol</span>)]</span>, <span name="action">action: (<span class="extype" name="scala.Unit">Unit</span>) ⇒ <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addRule(name:String,conditions:List[(Boolean,Symbol,Map[Symbol,Any],Symbol)],action:Unit=&gt;Any):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method adds a rule to the monitor.</p><div class="fullcomment"><div class="comment cmt"><p>This method adds a rule to the monitor. The action is a lambda-abstraction, allowing
+any Scala code to be executed in case the rule fires. This allows to access the values
+of matched identifiers.</p><p>Consider for example the following monitor expressing that a started command
+must be stopped before it can be started again, using normal DSL syntax:</p><pre><span class="kw">class</span> OneCommand <span class="kw">extends</span> Monitor {
+  <span class="kw">val</span> EVR = event
+  <span class="kw">val</span> Commanded = fact
+
+  <span class="lit">"r1"</span> -- EVR('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"START"</span>) &amp; not(Commanded('name -&gt; 'n)) |-&gt; Commanded('name -&gt; 'n)
+  <span class="lit">"r2"</span> -- EVR('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"START"</span>) &amp; Commanded('name -&gt; 'n) |-&gt; error(<span class="lit">"two commands"</span>)
+  <span class="lit">"r3"</span> -- EVR('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"STOP"</span>) &amp; Commanded('name -&gt; 'n) |-&gt; remove('Commanded)
+}</pre><p>This monitor can instead be expressed as follows using the addRule method:</p><pre><span class="kw">class</span> OneCommand <span class="kw">extends</span> Monitor {
+  <span class="cmt">// "r1" -- EVR('name -> 'n, 'message -> "START") & not(Commanded('name -> 'n)) |-> Commanded('name -> 'n)</span>
+  addRule(
+    <span class="lit">"r1"</span>,
+    <span class="std">List</span>(
+      (<span class="kw">true</span>, 'EVR, <span class="std">Map</span>('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"START"</span>), <span class="kw">null</span>),
+      (<span class="kw">false</span>, 'Commanded, <span class="std">Map</span>('name -&gt; 'n), <span class="kw">null</span>)),
+    {
+      <span class="kw">case</span> _ <span class="kw">=&gt;</span>
+        insert('Commanded('name -&gt; 'n))
+    })
+
+  <span class="cmt">// "r2" -- EVR('name -> 'n, 'message -> "START") & Commanded('name -> 'n) |-> error("two commands")</span>
+  addRule(
+    <span class="lit">"r2"</span>,
+    <span class="std">List</span>(
+      (<span class="kw">true</span>, 'EVR, <span class="std">Map</span>('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"START"</span>), <span class="kw">null</span>),
+      (<span class="kw">true</span>, 'Commanded, <span class="std">Map</span>('name -&gt; 'n), <span class="kw">null</span>)),
+    {
+      <span class="kw">case</span> _ <span class="kw">=&gt;</span>
+        fail(s<span class="lit">"two ${'n.s} commands"</span>) <span class="cmt">// note access to value of 'n</span>
+    })
+
+  <span class="cmt">// "r3" -- EVR('name -> 'n, 'message -> "STOP") & Commanded('name -> 'n) |-> remove('Commanded)</span>
+  addRule(
+    <span class="lit">"r3"</span>,
+    <span class="std">List</span>(
+      (<span class="kw">true</span>, 'EVR, <span class="std">Map</span>('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"STOP"</span>), <span class="kw">null</span>),
+      (<span class="kw">true</span>, 'Commanded, <span class="std">Map</span>('name -&gt; <span class="lit">'n), '</span>l)),
+    {
+      <span class="kw">case</span> _ <span class="kw">=&gt;</span>
+        remove('l)
+    })
+}</pre></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the name of the rule.</p></dd><dt class="param">conditions</dt><dd class="cmt"><p>the left hand-side conditions. Each condition is of the form
+       (positive,kind,constraints,label)
+       where positive=true  if there should exist a fact matching the constraints,
+       and   positive=false if there should not exist a fact matching the constraints;
+       where kind is the name of the fact,
+       where constraints map symbols (fields) to either symbols to be bound, or values to match exact;
+       and where label is a reference to the fact, which can be referred to if removing the fact
+       on the right hand side in an action (can be null if not needed).</p></dd><dt class="param">action</dt><dd class="cmt"><p>the action (a lambda abstraction) to be executed in case the left-hand side
+       matches.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#addRule" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addRule(name:String,conditions:List[(Boolean,Symbol,Map[Symbol,Any],Symbol)],add:List[(Symbol,Map[Symbol,Any])],rem:List[Symbol],errorText:String):Unit"></a>
+      <a id="addRule(String,List[(Boolean,Symbol,Map[Symbol,Any],Symbol)],List[(Symbol,Map[Symbol,Any])],List[Symbol],String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addRule</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conditions">conditions: <span class="extype" name="scala.List">List</span>[(<span class="extype" name="scala.Boolean">Boolean</span>, <span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>], <span class="extype" name="scala.Symbol">Symbol</span>)]</span>, <span name="add">add: <span class="extype" name="scala.List">List</span>[(<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>])]</span>, <span name="rem">rem: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Symbol">Symbol</span>]</span>, <span name="errorText">errorText: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@addRule(name:String,conditions:List[(Boolean,Symbol,Map[Symbol,Any],Symbol)],add:List[(Symbol,Map[Symbol,Any])],rem:List[Symbol],errorText:String):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method adds a rule to the monitor.</p><div class="fullcomment"><div class="comment cmt"><p>This method adds a rule to the monitor.</p><p>Consider for example the following monitor expressing that a started command
+must be stopped before it can be started again, using normal DSL syntax:</p><pre><span class="kw">class</span> OneCommand <span class="kw">extends</span> Monitor {
+  <span class="kw">val</span> EVR = event
+  <span class="kw">val</span> Commanded = fact
+
+  <span class="lit">"r1"</span> -- EVR('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"START"</span>) &amp; not(Commanded('name -&gt; 'n)) |-&gt; Commanded('name -&gt; 'n)
+  <span class="lit">"r2"</span> -- EVR('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"START"</span>) &amp; Commanded('name -&gt; 'n) |-&gt; error(<span class="lit">"two commands"</span>)
+  <span class="lit">"r3"</span> -- EVR('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"STOP"</span>) &amp; Commanded('name -&gt; 'n) |-&gt; remove('Commanded)
+}</pre><p>This monitor can instead be expressed as follows using the addRule method:</p><pre><span class="kw">class</span> OneCommand <span class="kw">extends</span> Monitor {
+  <span class="cmt">// "r1" -- EVR('name -> 'n, 'message -> "START") & not(Commanded('name -> 'n)) |-> Commanded('name -> 'n)</span>
+  addRule(
+    <span class="lit">"r1"</span>,
+    <span class="std">List</span>(
+      (<span class="kw">true</span>, 'EVR, <span class="std">Map</span>('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"START"</span>), <span class="kw">null</span>),
+      (<span class="kw">false</span>, 'Commanded, <span class="std">Map</span>('name -&gt; 'n), <span class="kw">null</span>)),
+    <span class="std">List</span>(
+      ('Commanded, <span class="std">Map</span>('name -&gt; 'n))),
+    Nil)
+
+  <span class="cmt">// "r2" -- EVR('name -> 'n, 'message -> "START") & Commanded('name -> 'n) |-> error("two commands")</span>
+  addRule(
+    <span class="lit">"r2"</span>,
+    <span class="std">List</span>(
+      (<span class="kw">true</span>, 'EVR, <span class="std">Map</span>('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"START"</span>), <span class="kw">null</span>),
+      (<span class="kw">true</span>, 'Commanded, <span class="std">Map</span>('name -&gt; 'n), <span class="kw">null</span>)),
+    Nil,
+    Nil,
+    <span class="lit">"two commands"</span>)
+
+  <span class="cmt">// "r3" -- EVR('name -> 'n, 'message -> "STOP") & Commanded('name -> 'n) |-> remove('Commanded)</span>
+  addRule(
+    <span class="lit">"r3"</span>,
+    <span class="std">List</span>(
+      (<span class="kw">true</span>, 'EVR, <span class="std">Map</span>('name -&gt; <span class="lit">'n, '</span>message -&gt; <span class="lit">"STOP"</span>), <span class="kw">null</span>),
+      (<span class="kw">true</span>, 'Commanded, <span class="std">Map</span>('name -&gt; <span class="lit">'n), '</span>l)),
+    Nil,
+    <span class="std">List</span>(<span class="lit">'l))
+}</span></pre></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the name of the rule.</p></dd><dt class="param">conditions</dt><dd class="cmt"><p>the left hand-side conditions. Each condition is of the form
+       (positive,kind,constraints,label)
+       where positive=true  if there should exist a fact matching the constraints,
+       and   positive=false if there should not exist a fact matching the constraints;
+       where kind is the name of the fact,
+       where constraints map symbols (fields) to either symbols to be bound, or values to match exact;
+       and where label is a reference to the fact, which can be referred to if removing the fact
+       on the right hand side in an action (can be null if not needed).</p></dd><dt class="param">add</dt><dd class="cmt"><p>a list of facts to be added. Each fact has the form (kind, constraints),
+       where kind is the name of the fact, and
+       where constraints map symbols (fields) to either symbols that must have been bound, or values.</p></dd><dt class="param">rem</dt><dd class="cmt"><p>a list of facts to be removed, where a fact is identified by its associated label
+       on the left-hand side.</p></dd><dt class="param">errorText</dt><dd class="cmt"><p>a text indicating an error, which will be reported. Default value is null inducating
+       no error will be reported.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="rete.Logic#avoid" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="avoid(text:String)(condition:Boolean):Unit"></a>
+      <a id="avoid(String)(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">avoid</span><span class="params">(<span name="text">text: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span name="condition">condition: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@avoid(text:String)(condition:Boolean):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Checks the truth of a condition and reports an error if it is true.</p><div class="fullcomment"><div class="comment cmt"><p>Checks the truth of a condition and reports an error if it is true.
+The provided text is printed followed by the text <code>- became true</code>.
+Hence the text is expected to describe the property that should not hold (and not
+an error message).
+</p></div><dl class="paramcmts block"><dt class="param">text</dt><dd class="cmt"><p>the text to be printed.</p></dd><dt class="param">condition</dt><dd class="cmt"><p>the condition to be checked.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#avoid" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="avoid(condition:Boolean):Unit"></a>
+      <a id="avoid(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">avoid</span><span class="params">(<span name="condition">condition: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@avoid(condition:Boolean):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Checks the truth of a condition and reports an error if it is true.</p><div class="fullcomment"><div class="comment cmt"><p>Checks the truth of a condition and reports an error if it is true.
+The method should be called inside a code action.
+</p></div><dl class="paramcmts block"><dt class="param">condition</dt><dd class="cmt"><p>the condition to be checked.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Monitor#clearFacts" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clearFacts(pred:Monitor.this.Binding=&gt;Boolean):Unit"></a>
+      <a id="clearFacts((Binding)⇒Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clearFacts</span><span class="params">(<span name="pred">pred: (<a href="#Binding=Map[Symbol,Any]" class="extmbr" name="rete.Monitor.Binding">Binding</a>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">m =&gt; true</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@clearFacts(pred:Monitor.this.Binding=&gt;Boolean):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Deletes all facts in the fact memory that satisfy a predicate (which has a default value
+true on all facts).</p><div class="fullcomment"><div class="comment cmt"><p>Deletes all facts in the fact memory that satisfy a predicate (which has a default value
+true on all facts).
+</p></div><dl class="paramcmts block"><dt class="param">pred</dt><dd class="cmt"><p>the predicate, which has a default value mapping all facts to true.
+            Any fact <i>F</i> for which <code>pred(</code><i>F</i><code>)</code>
+            is true will be deleted.</p></dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@clone():Object" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="rete.Logic#code" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="code(stmt:=&gt;Any):rete.Action"></a>
+      <a id="code(⇒Any):Action"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">code</span><span class="params">(<span name="stmt">stmt: ⇒ <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="rete.Action">Action</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@code(stmt:=&gt;Any):rete.Action" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates a code action carrying a piece of code to be executed.</p><div class="fullcomment"><div class="comment cmt"><p>Creates a code action carrying a piece of code to be executed.
+</p></div><dl class="paramcmts block"><dt class="param">stmt</dt><dd class="cmt"><p>the code to be executed.</p></dd><dt>returns</dt><dd class="cmt"><p>the code action.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#convObsToPC2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="convObsToPC2(obs:Logic.this.Obs):rete.PC"></a>
+      <a id="convObsToPC2(Obs):PC"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">convObsToPC2</span><span class="params">(<span name="obs">obs: <a href="#ObsextendsAnyRef" class="extmbr" name="rete.Logic.Obs">Obs</a></span>)</span><span class="result">: <a href="PC.html" class="extype" name="rete.PC">PC</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@convObsToPC2(obs:Logic.this.Obs):rete.PC" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Lifts an instance of a (case) class sub-classing <code>Obs</code> to positive condition of type <code>PC</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Lifts an instance of a (case) class sub-classing <code>Obs</code> to positive condition of type <code>PC</code>.
+The lifting  essentially converts the object to the internal format for a condition as used by LogFire.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#convSymbolToEither" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="convSymbolToEither[T](x:Symbol):Either[T,Symbol]"></a>
+      <a id="convSymbolToEither[T](Symbol):Either[T,Symbol]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">convSymbolToEither</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="x">x: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="result">: <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="rete.Logic.convSymbolToEither.T">T</span>, <span class="extype" name="scala.Symbol">Symbol</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@convSymbolToEither[T](x:Symbol):Either[T,Symbol]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Lifts a value of type <code>Symbol</code> to <code>Either[T,Symbol]</code>, thereby representing a variable
+of type <code>T</code>.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Lifts a value of type <code>Symbol</code> to <code>Either[T,Symbol]</code>, thereby representing a variable
+of type <code>T</code>. Used in rules to define patterns for arguments of case class instantiations representing events and
+facts.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#convValueToEither" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="convValueToEither[T](x:T):Either[T,Symbol]"></a>
+      <a id="convValueToEither[T](T):Either[T,Symbol]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">convValueToEither</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="x">x: <span class="extype" name="rete.Logic.convValueToEither.T">T</span></span>)</span><span class="result">: <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="rete.Logic.convValueToEither.T">T</span>, <span class="extype" name="scala.Symbol">Symbol</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@convValueToEither[T](x:T):Either[T,Symbol]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Lifts a value of type <code>T</code> to <code>Either[T,Symbol]</code>, also containing variables of
+type <code>Symbol</code>.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Lifts a value of type <code>T</code> to <code>Either[T,Symbol]</code>, also containing variables of
+type <code>Symbol</code>. Used to define arguments for case classes representing events and facts.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.graphviz.Visual#dotFile" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="dotFile(file:String):Unit"></a>
+      <a id="dotFile(String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">dotFile</span><span class="params">(<span name="file">file: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@dotFile(file:String):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Sets the dot file to which graphs showing the internal RETE data structures will be written.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the dot file to which graphs showing the internal RETE data structures will be written.
+</p></div><dl class="paramcmts block"><dt class="param">file</dt><dd class="cmt"><p>the .dot file to which the graph will be written. The file should end in <code>.dot</code>.
+            The file can be opened with <a href="http://www.graphviz.org">Graphviz</a> after
+            <code>draw()</code> has been called.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd>Visual</dd></dl></div>
+    </li><li name="rete.graphviz.Visual#draw" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="draw(file:String):Unit"></a>
+      <a id="draw(String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">draw</span><span class="params">(<span name="file">file: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@draw(file:String):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Draws the internal RETE data structure and writes it as a .dot (Graphviz) representation to the file
+provided as parameter.</p><div class="fullcomment"><div class="comment cmt"><p>Draws the internal RETE data structure and writes it as a .dot (Graphviz) representation to the file
+provided as parameter. A call of this function is equivalent to: <code>dotFile(file);draw()</code>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd>Visual</dd></dl></div>
+    </li><li name="rete.graphviz.Visual#draw" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="draw():Unit"></a>
+      <a id="draw():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">draw</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@draw():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Draws the internal RETE data structure and writes it as a .dot (Graphviz) representation to the file
+set by <code>dotFile(String)</code>.</code></p><div class="fullcomment"><div class="comment cmt"><p>Draws the internal RETE data structure and writes it as a .dot (Graphviz) representation to the file
+set by <code>dotFile(String)</code>. Such drawing of the internal RETE data structure is useful for
+understanding how RETE works. It is meant to be for debugging purposes only.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd>Visual</dd></dl></div>
+    </li><li name="rete.Logic#ensure" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensure(text:String)(condition:Boolean):Unit"></a>
+      <a id="ensure(String)(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ensure</span><span class="params">(<span name="text">text: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span name="condition">condition: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@ensure(text:String)(condition:Boolean):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Checks the truth of a condition and reports an error if it is false.</p><div class="fullcomment"><div class="comment cmt"><p>Checks the truth of a condition and reports an error if it is false.
+The provided text is printed followed by the text <code>- failed</code>.
+Hence the text is expected to describe the property that should hold (and not
+an error message).
+</p></div><dl class="paramcmts block"><dt class="param">text</dt><dd class="cmt"><p>the text to be printed.</p></dd><dt class="param">condition</dt><dd class="cmt"><p>the condition to be checked.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#ensure" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensure(condition:Boolean):Unit"></a>
+      <a id="ensure(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ensure</span><span class="params">(<span name="condition">condition: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@ensure(condition:Boolean):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Checks the truth of a condition and reports an error if it is false.</p><div class="fullcomment"><div class="comment cmt"><p>Checks the truth of a condition and reports an error if it is false.
+The method should be called inside a code action.
+</p></div><dl class="paramcmts block"><dt class="param">condition</dt><dd class="cmt"><p>the condition to be checked.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="rete.Logic#error" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="error(msg:String):rete.Action"></a>
+      <a id="error(String):Action"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">error</span><span class="params">(<span name="msg">msg: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="rete.Action">Action</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@error(msg:String):rete.Action" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates an error action that prints a user provided error message.</p><div class="fullcomment"><div class="comment cmt"><p>Creates an error action that prints a user provided error message.
+</p></div><dl class="paramcmts block"><dt class="param">msg</dt><dd class="cmt"><p>the error message to be printed.</p></dd><dt>returns</dt><dd class="cmt"><p>the error action.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#error" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="error:rete.Action"></a>
+      <a id="error:Action"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">error</span><span class="result">: <span class="extype" name="rete.Action">Action</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@error:rete.Action" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates an error action that prints a standard error message.</p><div class="fullcomment"><div class="comment cmt"><p>Creates an error action that prints a standard error message.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the error action.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#eval" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eval(pc:rete.PC):String"></a>
+      <a id="eval(PC):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eval</span><span class="params">(<span name="pc">pc: <a href="PC.html" class="extype" name="rete.PC">PC</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@eval(pc:rete.PC):String" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Evaluates a PC (Positive Condition) to a nicely formatted string, where all variables are
+replaced with the values they are bound to.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates a PC (Positive Condition) to a nicely formatted string, where all variables are
+replaced with the values they are bound to.
+</p></div><dl class="paramcmts block"><dt class="param">pc</dt><dd class="cmt"><p>the positive condition to be converted to a string.</p></dd><dt>returns</dt><dd class="cmt"><p>the string representation of the positive condition.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#event" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="event:Symbol"></a>
+      <a id="event:Symbol"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">event</span><span class="result">: <span class="extype" name="scala.Symbol">Symbol</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@event:Symbol" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Defines an event kind.</p><div class="fullcomment"><div class="comment cmt"><p>Defines an event kind.
+Note that the symbol must be defined in the monitor or in a <b>trait</b> that the monitor extends.
+It cannot be defined in a <b>class</b> that the monitor extends.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>event kind.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#fact" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fact:Symbol"></a>
+      <a id="fact:Symbol"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fact</span><span class="result">: <span class="extype" name="scala.Symbol">Symbol</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@fact:Symbol" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Defines a fact kind.</p><div class="fullcomment"><div class="comment cmt"><p>Defines a fact kind.
+Note that the symbol must be defined in the monitor or in a <b>trait</b> that the monitor extends.
+It cannot be defined in a <b>class</b> that the monitor extends.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>fact kind.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#fail" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fail(msg:String):Unit"></a>
+      <a id="fail(String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fail</span><span class="params">(<span name="msg">msg: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@fail(msg:String):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Reports an error, printing the provided error message.</p><div class="fullcomment"><div class="comment cmt"><p>Reports an error, printing the provided error message. The method should be called inside a code action.
+</p></div><dl class="paramcmts block"><dt class="param">msg</dt><dd class="cmt"><p>the error message to be printed.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@finalize():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="rete.Logic#get" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="get[T](v:Symbol):T"></a>
+      <a id="get[T](Symbol):T"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">get</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="v">v: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="result">: <span class="extype" name="rete.Logic.get.T">T</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@get[T](v:Symbol):T" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Reads the value that a symbol has been bound to on the left-hand side of a rule.</p><div class="fullcomment"><div class="comment cmt"><p>Reads the value that a symbol has been bound to on the left-hand side of a rule.
+The function can be called on the right-hand side of the rule to access the value.
+The type parameter must be provided to indicate the type of the value.
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>the expected type of the value.</p></dd><dt class="param">v</dt><dd class="cmt"><p>the symbol being bound to a value.</p></dd><dt>returns</dt><dd class="cmt"><p>the value that the symbol is bound to.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#getArgs" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getArgs(label:Symbol):Logic.this.Binding"></a>
+      <a id="getArgs(Symbol):Binding"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getArgs</span><span class="params">(<span name="label">label: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="result">: <a href="#Binding=Map[Symbol,Any]" class="extmbr" name="rete.Monitor.Binding">Binding</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@getArgs(label:Symbol):Logic.this.Binding" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns the entire argument map associated with an event or fact.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the entire argument map associated with an event or fact.
+The event/fact is referenced by a label that can have been introduced
+explicitly in a rule left-hand side as follows:</p><p><code>... 'SomeFact(...) == 'l ... |-> ...</code></p><p>In this case the argument map is obtained by: <code>getArgs('l)</code>.
+Alternatively, if an event/fact of a specific kind only occurs once on a rule left-hand side
+(which is always the case for events), then the name of the event/fact can be used as label.
+For example if the left-hand side contains:</p><p><code>... 'SomeFact(...) ... |-> ...</code></p><p>then the map can be obtained by: <code>getArgs('SomeFact)</code>
+</p></div><dl class="paramcmts block"><dt class="param">label</dt><dd class="cmt"><p>the label referencing the event/fact.</p></dd><dt>returns</dt><dd class="cmt"><p>the argument map of that event/fact.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Rete#getBinding" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getBinding(sym:Symbol):Any"></a>
+      <a id="getBinding(Symbol):Any"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getBinding</span><span class="params">(<span name="sym">sym: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="result">: <span class="extype" name="scala.Any">Any</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@getBinding(sym:Symbol):Any" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Rete</dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="rete.Monitor#getFacts" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getFacts(file:String):Set[Monitor.this.Binding]"></a>
+      <a id="getFacts(String):Set[Binding]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getFacts</span><span class="params">(<span name="file">file: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="#Binding=Map[Symbol,Any]" class="extmbr" name="rete.Monitor.Binding">Binding</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@getFacts(file:String):Set[Monitor.this.Binding]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Reads facts from a permanent file to which they have previously been written with a call of
+<code>writeFacts</code>.</code></p><div class="fullcomment"><div class="comment cmt"><p>Reads facts from a permanent file to which they have previously been written with a call of
+<code>writeFacts</code>. The facts are not loaded into the fact memory, but are instead returned
+as a set of bindings.
+</p></div><dl class="paramcmts block"><dt class="param">file</dt><dd class="cmt"><p>the file from which to read the facts.</p></dd><dt>returns</dt><dd class="cmt"><p>the set of bindings corresponding to the facts read from the file.</p></dd></dl></div>
+    </li><li name="rete.Monitor#getMaps" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getMaps(pred:Monitor.this.Binding=&gt;Boolean):Set[Monitor.this.Binding]"></a>
+      <a id="getMaps((Binding)⇒Boolean):Set[Binding]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getMaps</span><span class="params">(<span name="pred">pred: (<a href="#Binding=Map[Symbol,Any]" class="extmbr" name="rete.Monitor.Binding">Binding</a>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">m =&gt; true</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="#Binding=Map[Symbol,Any]" class="extmbr" name="rete.Monitor.Binding">Binding</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@getMaps(pred:Monitor.this.Binding=&gt;Boolean):Set[Monitor.this.Binding]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Extracts all facts from the fact memory that satisfies a predicate and returns them
+as a set of bindings.</p><div class="fullcomment"><div class="comment cmt"><p>Extracts all facts from the fact memory that satisfies a predicate and returns them
+as a set of bindings. This method can be useful for examining the contents of the
+fact memory.
+</p></div><dl class="paramcmts block"><dt class="param">pred</dt><dd class="cmt"><p>the filtering predicate, having the default value true on all facts.</p></dd><dt>returns</dt><dd class="cmt"><p>the set of facts collected from the fact memory, presented as bindings.</p></dd></dl></div>
+    </li><li name="rete.Logic#getMonitorResult" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getMonitorResult:rete.MonitorResult"></a>
+      <a id="getMonitorResult:MonitorResult"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getMonitorResult</span><span class="result">: <a href="MonitorResult.html" class="extype" name="rete.MonitorResult">MonitorResult</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@getMonitorResult:rete.MonitorResult" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns a <code>MonitorResult</code> object representing the trace analysis results.</p><div class="fullcomment"><div class="comment cmt"><p>Returns a <code>MonitorResult</code> object representing the trace analysis results.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the result of the trace analysis as a <code>MonitorResult</code> object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@hashCode():Int" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="rete.Monitor#hot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hot(symbols:Symbol*):Unit"></a>
+      <a id="hot(Symbol*):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hot</span><span class="params">(<span name="symbols">symbols: <span class="extype" name="scala.Symbol">Symbol</span>*</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@hot(symbols:Symbol*):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Defines a sequence of fact names as hot.</p><div class="fullcomment"><div class="comment cmt"><p>Defines a sequence of fact names as hot. When the monitor is terminated
+with the <code>terminate</code> function, an error message is issued for
+each hot fact remaining in fact memory. The function must not be be called
+before the first rule declaration in the monitor. Good style is to call
+it after all the rule declarations.
+</p></div><dl class="paramcmts block"><dt class="param">symbols</dt><dd class="cmt"><p>names of hot facts.</p></dd></dl></div>
+    </li><li name="rete.Logic#initialize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="initialize():Unit"></a>
+      <a id="initialize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">initialize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@initialize():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This function should be called from user-defined patterns as the first thing
+to initialize symbols defined with one of the functions <code>event</code>, <code>fact</code> or <code>symbol</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This function should be called from user-defined patterns as the first thing
+to initialize symbols defined with one of the functions <code>event</code>, <code>fact</code> or <code>symbol</code>.
+It only works correctly, however, if all the PC arguments to the pattern are evaluated
+after the call of this function.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#insert" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="insert(pc:rete.PC):Unit"></a>
+      <a id="insert(PC):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">insert</span><span class="params">(<span name="pc">pc: <a href="PC.html" class="extype" name="rete.PC">PC</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@insert(pc:rete.PC):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Inserts fact into the fact memory.</p><div class="fullcomment"><div class="comment cmt"><p>Inserts fact into the fact memory.
+</p></div><dl class="paramcmts block"><dt class="param">pc</dt><dd class="cmt"><p>the fact to be inserted.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="rete.Logic#kindToConditionArguments" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="kindToConditionArguments(kind:Symbol):Logic.this.ConditionArguments"></a>
+      <a id="kindToConditionArguments(Symbol):ConditionArguments"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">kindToConditionArguments</span><span class="params">(<span name="kind">kind: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="result">: <a href="#ConditionArgumentsextendsAnyRef" class="extmbr" name="rete.Logic.ConditionArguments">ConditionArguments</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@kindToConditionArguments(kind:Symbol):Logic.this.ConditionArguments" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Lifts a kind-name to an object allowing to define the arguments to a condition on the left-hand side
+of a rule or a fact on the right-hand side of a rule.</p><div class="fullcomment"><div class="comment cmt"><p>Lifts a kind-name to an object allowing to define the arguments to a condition on the left-hand side
+of a rule or a fact on the right-hand side of a rule. For example, Consider the following condition
+on the left-hand side of a rule:</p><p><code>
+"my rule" -- 'COMMAND('name,'number) |-> ...
+</code></p><p>The implicit conversion will here lift <code>'COMMAND</code> to an instance of the form:
+<code>new ConditionArguments('COMMAND)</code>.
+</p></div><dl class="paramcmts block"><dt class="param">kind</dt><dd class="cmt"><p>the event/fact kind to be lifted.</p></dd><dt>returns</dt><dd class="cmt"><p>the object allowing to define the arguments to the condition/fact.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#monitorResult" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="monitorResult:rete.MonitorResult"></a>
+      <a id="monitorResult:MonitorResult"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">monitorResult</span><span class="result">: <a href="MonitorResult.html" class="extype" name="rete.MonitorResult">MonitorResult</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@monitorResult:rete.MonitorResult" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="rete">rete</a>] </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#nameOfPosition" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="nameOfPosition:Map[Int,Symbol]"></a>
+      <a id="nameOfPosition:Map[Int,Symbol]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nameOfPosition</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Symbol">Symbol</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@nameOfPosition:Map[Int,Symbol]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Mapping from integers to symbols: Map(1 -&gt; 'one, 2 -&gt; 'two, 3 -&gt; 'three, ...).</p><div class="fullcomment"><div class="comment cmt"><p>Mapping from integers to symbols: Map(1 -&gt; 'one, 2 -&gt; 'two, 3 -&gt; 'three, ...).
+Used for representing positional arguments in facts. Can be used when creating
+such fact maps manually, for example when reading events from a file.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#nameToRuleDefinition" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="nameToRuleDefinition(name:String):Logic.this.RuleDefinition"></a>
+      <a id="nameToRuleDefinition(String):RuleDefinition"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nameToRuleDefinition</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="#RuleDefinitionextendsAnyRef" class="extmbr" name="rete.Logic.RuleDefinition">RuleDefinition</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@nameToRuleDefinition(name:String):Logic.this.RuleDefinition" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Lifts a rule name to an object that allows to define a rule with that name.</p><div class="fullcomment"><div class="comment cmt"><p>Lifts a rule name to an object that allows to define a rule with that name.
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the name of the rule to be defined.</p></dd><dt>returns</dt><dd class="cmt"><p>object providing methods that permit to define the rule.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="rete.Logic#newSymbol" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="newSymbol(kind:Symbol):Symbol"></a>
+      <a id="newSymbol(Symbol):Symbol"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">newSymbol</span><span class="params">(<span name="kind">kind: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="result">: <span class="extype" name="scala.Symbol">Symbol</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@newSymbol(kind:Symbol):Symbol" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns a fresh unique symbol, which will not collide with other symbols used for
+internals fact kinds.</p><div class="fullcomment"><div class="comment cmt"><p>Returns a fresh unique symbol, which will not collide with other symbols used for
+internals fact kinds. The returned symbol has the form <i>kind</i><code>&#95;&#95;</code><i>&lt;number&gt;</i>.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the fresh symbol.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#newSymbol" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="newSymbol():Symbol"></a>
+      <a id="newSymbol():Symbol"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">newSymbol</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Symbol">Symbol</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@newSymbol():Symbol" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns a fresh unique symbol, which will not collide with other symbols used for
+internals fact kinds.</p><div class="fullcomment"><div class="comment cmt"><p>Returns a fresh unique symbol, which will not collide with other symbols used for
+internals fact kinds. The returned symbol has the form <code>'internalFact&#95;&#95;</code><i>&lt;number&gt;</i>.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the fresh symbol.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#not" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="not(conditions:rete.Condition*):rete.Condition"></a>
+      <a id="not(Condition*):Condition"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">not</span><span class="params">(<span name="conditions">conditions: <span class="extype" name="rete.Condition">Condition</span>*</span>)</span><span class="result">: <span class="extype" name="rete.Condition">Condition</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@not(conditions:rete.Condition*):rete.Condition" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Negates one or more conditions.</p><div class="fullcomment"><div class="comment cmt"><p>Negates one or more conditions. For example <code>not('Commanded('name))</code>
+represents the condition that <code>'name</code> has not been commanded. When applied
+to more than one condition, as in <code>not(c1,c2,...,cn)</code>, it means a negation
+of the conjunction of conditions.
+</p></div><dl class="paramcmts block"><dt class="param">conditions</dt><dd class="cmt"><p>the conditions, the conjunction of which will be negated.</p></dd><dt>returns</dt><dd class="cmt"><p>the negated condition.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@notify():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="rete.Logic#pcToAction" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="pcToAction(pc:rete.PC):rete.Action"></a>
+      <a id="pcToAction(PC):Action"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">pcToAction</span><span class="params">(<span name="pc">pc: <a href="PC.html" class="extype" name="rete.PC">PC</a></span>)</span><span class="result">: <span class="extype" name="rete.Action">Action</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@pcToAction(pc:rete.PC):rete.Action" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates an action that adds a fact to the fact memory.</p><div class="fullcomment"><div class="comment cmt"><p>Creates an action that adds a fact to the fact memory. The positive
+condition <code>pc</code> is by this implicit conversion transformed
+to <code>add(pc)</code>. This implicit conversion allows us for example
+to write a rule of the form:</p><p><code>
+"my rule" -- 'COMMAND('name) |-> 'Commanded('name)
+</code></p><p>to mean that if a <code>'COMMAND('name)</code> event is observed, then the fact
+<code>'Commanded('name)</code> is added to the fact memory. This rule is equivalent to:</p><p><code>
+"my rule" -- 'COMMAND('name) |-> add('Commanded('name))
+</code>
+</p></div><dl class="paramcmts block"><dt class="param">pc</dt><dd class="cmt"><p>The fact to be added.</p></dd><dt>returns</dt><dd class="cmt"><p>the add action.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#print" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="print(string:String):rete.Action"></a>
+      <a id="print(String):Action"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">print</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="rete.Action">Action</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@print(string:String):rete.Action" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates action that prints a message.</p><div class="fullcomment"><div class="comment cmt"><p>Creates action that prints a message.
+</p></div><dl class="paramcmts block"><dt class="param">string</dt><dd class="cmt"><p>the message to be printed.</p></dd><dt>returns</dt><dd class="cmt"><p>the print action.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Monitor#printMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="printMap(binding:Monitor.this.Binding):Unit"></a>
+      <a id="printMap(Binding):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">printMap</span><span class="params">(<span name="binding">binding: <a href="#Binding=Map[Symbol,Any]" class="extmbr" name="rete.Monitor.Binding">Binding</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@printMap(binding:Monitor.this.Binding):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Prints a binding in a readable format reflecting that it is a fact.</p><div class="fullcomment"><div class="comment cmt"><p>Prints a binding in a readable format reflecting that it is a fact.
+</p></div><dl class="paramcmts block"><dt class="param">binding</dt><dd class="cmt"><p>the binding to be printed.</p></dd></dl></div>
+    </li><li name="rete.Rete#printRules" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="printRules():Unit"></a>
+      <a id="printRules():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">printRules</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@printRules():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Prints all the rules entered as part of the definition of this monitor.</p><div class="fullcomment"><div class="comment cmt"><p>Prints all the rules entered as part of the definition of this monitor.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd>Rete</dd></dl></div>
+    </li><li name="rete.Rete#putBinding" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="putBinding(sym:Symbol,value:Any):Unit"></a>
+      <a id="putBinding(Symbol,Any):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">putBinding</span><span class="params">(<span name="sym">sym: <span class="extype" name="scala.Symbol">Symbol</span></span>, <span name="value">value: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@putBinding(sym:Symbol,value:Any):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Rete</dd></dl></div>
+    </li><li name="rete.Monitor#readFacts" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="readFacts(file:String,pred:Monitor.this.Binding=&gt;Boolean):Unit"></a>
+      <a id="readFacts(String,(Binding)⇒Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">readFacts</span><span class="params">(<span name="file">file: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="pred">pred: (<a href="#Binding=Map[Symbol,Any]" class="extmbr" name="rete.Monitor.Binding">Binding</a>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">m =&gt; true</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@readFacts(file:String,pred:Monitor.this.Binding=&gt;Boolean):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Loads facts filtered by a predicate into the fact memory from a permanent
+file to which they have previously been written with a call of
+<code>writeFacts</code>.</code></p><div class="fullcomment"><div class="comment cmt"><p>Loads facts filtered by a predicate into the fact memory from a permanent
+file to which they have previously been written with a call of
+<code>writeFacts</code>.
+</p></div><dl class="paramcmts block"><dt class="param">file</dt><dd class="cmt"><p>the file from which to load the facts.</p></dd><dt class="param">pred</dt><dd class="cmt"><p>the filtering predicate, which by default is true for all facts. Only facts <i>F</i>
+            for which <code>pred(</code><i>F</i><code>)</code> is true are loaded.</p></dd></dl></div>
+    </li><li name="rete.Logic#rem" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rem(label:Symbol):rete.Action"></a>
+      <a id="rem(Symbol):Action"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rem</span><span class="params">(<span name="label">label: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="result">: <span class="extype" name="rete.Action">Action</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@rem(label:Symbol):rete.Action" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates an action that removes a fact from the fact memory.</p><div class="fullcomment"><div class="comment cmt"><p>Creates an action that removes a fact from the fact memory. The fact is referenced by
+a label that can have been introduced explicitly in a rule left-hand side as follows:</p><p><code>... 'SomeFact(...) == 'l ... |-> ...</code></p><p>In this case it can be removed by: <code>rem('l)</code>.
+Alternatively, if a fact of a specific kind only occurs once on a rule left-hand side,
+then it can be removed by just referring to the name of the fact. For example if the left-hand
+side contains:</p><p><code>... 'SomeFact(...) ... |-> ...</code></p><p>then it can be removed by the action: <code>rem('SomeFact)</code>
+</p></div><dl class="paramcmts block"><dt class="param">label</dt><dd class="cmt"><p>the label referencing the fact to be removed.</p></dd><dt>returns</dt><dd class="cmt"><p>the remove action.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#remove" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="remove(label:Symbol):Unit"></a>
+      <a id="remove(Symbol):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">remove</span><span class="params">(<span name="label">label: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@remove(label:Symbol):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Removes a fact from the fact memory.</p><div class="fullcomment"><div class="comment cmt"><p>Removes a fact from the fact memory. The fact is referenced by
+a label that can have been introduced explicitly in a rule left-hand side as follows:</p><p><code>... 'SomeFact(...) == 'l ... |-> ...</code></p><p>In this case it can be removed by: <code>remove('l)</code>.
+Alternatively, if a fact of a specific kind only occurs once on a rule left-hand side,
+then it can be removed by just referring to the name of the fact. For example if the left-hand
+side contains:</p><p><code>... 'SomeFact(...) ... |-> ...</code></p><p>then it can be removed by the action: <code>remove('SomeFact)</code>
+</p></div><dl class="paramcmts block"><dt class="param">label</dt><dd class="cmt"><p>the label referencing the fact to be removed.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#replace" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="replace(label:Symbol)(pc:rete.PC):Unit"></a>
+      <a id="replace(Symbol)(PC):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">replace</span><span class="params">(<span name="label">label: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="params">(<span name="pc">pc: <a href="PC.html" class="extype" name="rete.PC">PC</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@replace(label:Symbol)(pc:rete.PC):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Replaces a fact of one kind with a fact of a different kind.</p><div class="fullcomment"><div class="comment cmt"><p>Replaces a fact of one kind with a fact of a different kind. For example,</p><p><code>replace('Commanded)('Succeeded('cmdName))</code></p><p>is equivalent to:</p><p><code>remove('Commanded);insert('Succeeded('cmdName))</code>
+</p></div><dl class="paramcmts block"><dt class="param">label</dt><dd class="cmt"><p>reference to the fact to be removed.</p></dd><dt class="param">pc</dt><dd class="cmt"><p>the new fact to be added.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#report" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="report(msg:String):Unit"></a>
+      <a id="report(String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">report</span><span class="params">(<span name="msg">msg: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@report(msg:String):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Reports a result on standard out, and stores it in the <code>MonitorResult</code>
+object associated with the monitor.</p><div class="fullcomment"><div class="comment cmt"><p>Reports a result on standard out, and stores it in the <code>MonitorResult</code>
+object associated with the monitor. This <code>MonitorResult</code> object can at any
+time be accessed with the method <code>getMonitorResult</code>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Monitor#submit" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="submit(record:&lt;error&gt;):Unit"></a>
+      <a id="submit(&lt;error&gt;):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">submit</span><span class="params">(<span name="record">record: &lt;error&gt;</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@submit(record:&lt;error&gt;):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Submits a CSV record read by a CSV reader.</p><div class="fullcomment"><div class="comment cmt"><p>Submits a CSV record read by a CSV reader. Fields of the record are extracted
+and an event is emitted to the monitor with a call of <code>addMapEvent</code>.
+As soon as a field is empty, as in <code>open,1,,</code> the argument collection
+terminates on that single event line, and the reader moves on to the next line.
+This means that for example in <code>open,1,,2</code> the <code>2</code> will
+be ignored. The user has to make sure that this situation does not occur.
+</p></div><dl class="paramcmts block"><dt class="param">record</dt><dd class="cmt"><p>the CSV record to be submitted.</p></dd></dl></div>
+    </li><li name="rete.Logic#symbol" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="symbol:Symbol"></a>
+      <a id="symbol:Symbol"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">symbol</span><span class="result">: <span class="extype" name="scala.Symbol">Symbol</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@symbol:Symbol" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Defines a symbol.</p><div class="fullcomment"><div class="comment cmt"><p>Defines a symbol.
+Note that the symbol must be defined in the monitor or in a <b>trait</b> that the monitor extends.
+It cannot be defined in a <b>class</b> that the monitor extends.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the symbol.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#symbolToBoolean" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="symbolToBoolean(x:Symbol):Boolean"></a>
+      <a id="symbolToBoolean(Symbol):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">symbolToBoolean</span><span class="params">(<span name="x">x: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@symbolToBoolean(x:Symbol):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Lifts a symbol to the Boolean value that the symbol has been
+bound to on the left-hand side of a rule.</p><div class="fullcomment"><div class="comment cmt"><p>Lifts a symbol to the Boolean value that the symbol has been
+bound to on the left-hand side of a rule. This implicit function allows to use a
+symbol in a context where a Boolean is expected. Note that it may be safer
+to explicitly access the value by using
+<code>get[Boolean]('x)</code>, to avoid implicit conversion confusion.
+</p></div><dl class="paramcmts block"><dt class="param">x</dt><dd class="cmt"><p>the symbol being bound to a Boolean.</p></dd><dt>returns</dt><dd class="cmt"><p>the Boolean value that the symbol is bound to.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#symbolToInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="symbolToInt(x:Symbol):Int"></a>
+      <a id="symbolToInt(Symbol):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">symbolToInt</span><span class="params">(<span name="x">x: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@symbolToInt(x:Symbol):Int" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Lifts a symbol to the integer value that the symbol has been
+bound to on the left-hand side of a rule.</p><div class="fullcomment"><div class="comment cmt"><p>Lifts a symbol to the integer value that the symbol has been
+bound to on the left-hand side of a rule. This implicit function allows to use a
+symbol in a context where an integer is expected. Note that it may be safer
+to explicitly access the value by using: <code>'x.i</code> or
+<code>get[Int]('x)</code>, to avoid implicit conversion confusion.
+</p></div><dl class="paramcmts block"><dt class="param">x</dt><dd class="cmt"><p>the symbol being bound to an integer.</p></dd><dt>returns</dt><dd class="cmt"><p>the integer value that the symbol is bound to.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="rete.Logic#symbolToSymbolOperations" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="symbolToSymbolOperations(symbol:Symbol):Logic.this.SymbolOperations"></a>
+      <a id="symbolToSymbolOperations(Symbol):SymbolOperations"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">symbolToSymbolOperations</span><span class="params">(<span name="symbol">symbol: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="result">: <a href="#SymbolOperationsextendsAnyRef" class="extmbr" name="rete.Logic.SymbolOperations">SymbolOperations</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@symbolToSymbolOperations(symbol:Symbol):Logic.this.SymbolOperations" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Lifts a symbol to an object, which provides methods on the symbol for accessing
+the value, that the symbol has been bound to on the left-hand side of a rule.</p><div class="fullcomment"><div class="comment cmt"><p>Lifts a symbol to an object, which provides methods on the symbol for accessing
+the value, that the symbol has been bound to on the left-hand side of a rule. There
+is a method (named with single letter names) for each possible (typical) type.
+</p></div><dl class="paramcmts block"><dt class="param">symbol</dt><dd class="cmt"><p>the symbol to be lifted.</p></dd><dt>returns</dt><dd class="cmt"><p>the object providing value accessor methods.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="rete.Monitor#terminate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="terminate():Unit"></a>
+      <a id="terminate():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">terminate</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@terminate():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Terminates monitoring.</p><div class="fullcomment"><div class="comment cmt"><p>Terminates monitoring. The function should only be called at the end of a monitoring
+session if some facts have been declared hot with the <code>hot</code> function.
+Any hot fact remaining in fact memory upon termination will be reported as an error.
+</p></div></div>
+    </li><li name="rete.Rete#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@toString():String" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Rete → AnyRef → Any</dd></dl></div>
+    </li><li name="rete.Logic#update" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="update(pc:rete.PC):Unit"></a>
+      <a id="update(PC):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">update</span><span class="params">(<span name="pc">pc: <a href="PC.html" class="extype" name="rete.PC">PC</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@update(pc:rete.PC):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Updates a fact with new parameters.</p><div class="fullcomment"><div class="comment cmt"><p>Updates a fact with new parameters. For example:</p><p><code>update('Counter(...))</code></p><p>is equivalent to:</p><p><code>remove('Counter);insert(Counter(...))</code>
+</p></div><dl class="paramcmts block"><dt class="param">pc</dt><dd class="cmt"><p>the new fact to be added, updating the old fact.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Logic.html" class="extype" name="rete.Logic">Logic</a></dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@wait():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="rete.Monitor#writeFacts" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="writeFacts(file:String,pred:Monitor.this.Binding=&gt;Boolean):Unit"></a>
+      <a id="writeFacts(String,(Binding)⇒Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">writeFacts</span><span class="params">(<span name="file">file: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="pred">pred: (<a href="#Binding=Map[Symbol,Any]" class="extmbr" name="rete.Monitor.Binding">Binding</a>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">m =&gt; true</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.Monitor@writeFacts(file:String,pred:Monitor.this.Binding=&gt;Boolean):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Writes facts from fact memory, filtered by a predicate, to a permanent file
+for later use.</p><div class="fullcomment"><div class="comment cmt"><p>Writes facts from fact memory, filtered by a predicate, to a permanent file
+for later use. This file can at a later stage be be re-loaded into a fact memory
+with the <code>readFacts</code> function, or can simply be read by the <code>getFacts</code>
+function.
+</p></div><dl class="paramcmts block"><dt class="param">file</dt><dd class="cmt"><p>the file to write the facts to.</p></dd><dt class="param">pred</dt><dd class="cmt"><p>the predicate filtering the facts to be written. Only facts <i>F</i>
+            for which <code>pred(</code><i>F</i><code>)</code> is true are written to the file.
+            The predicate is by default true for all facts.</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="rete.Logic">
+              <h3>Inherited from <a href="Logic.html" class="extype" name="rete.Logic">Logic</a></h3>
+            </div><div class="parent" name="rete.Rete">
+              <h3>Inherited from <span class="extype" name="rete.Rete">Rete</span></h3>
+            </div><div class="parent" name="rete.graphviz.Visual">
+              <h3>Inherited from <span class="extype" name="rete.graphviz.Visual">Visual</span></h3>
+            </div><div class="parent" name="rete.Options">
+              <h3>Inherited from <a href="Options.html" class="extype" name="rete.Options">Options</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

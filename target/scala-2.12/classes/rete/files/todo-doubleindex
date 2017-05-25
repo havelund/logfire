@@ -1,0 +1,247 @@
+
+The Double Index plus:
+
+-- Wme: --
+private[rete] case class Wme(fields: Binding) extends Indexable[FieldToTest] with Visual {
+  //private[rete] case class Wme(fields: Binding) extends Visual {
+
+remove:
+ //am.items = am.items - this
+ //if (am.items == Nil) { // alpha memory just became empty
+ am.remove(this)
+ if (am.isEmpty) 
+
+  def lookup(field: FieldToTest): Option[Value] =
+    fields.get(field)
+
+-- Token: --
+
+private[rete] case class Token(parent: Token, wme: Wme) extends Indexable[(Int, FieldToTest)] with Visual {
+  //private[rete] case class Token(parent: Token, wme: Wme) extends Visual {
+
+remove:
+ node.remove(this)
+ //node.items = node.items - this
+
+ if (node.isEmpty) {
+ //if (node.items == Nil) {
+
+ if (negNode.isEmpty) { // right unlink it
+ // if (negNode.items == Nil) { // right unlink it
+
+ def lookup(field: (Int, FieldToTest)): Option[Value] =
+    getIthWme(field._1).lookup(field._2)
+
+-- AlphaMemory: ---
+
+ private val items = new DoubleIndex[FieldToTest, Wme]()
+  //private var items: Set[Wme] = Set() // a list in thesis
+
+--\
+  def addFields(fields: List[FieldToTest]) {
+    items.addFields(fields)
+  }
+
+  def isEmpty: Boolean = items.isEmpty
+
+  def wasEmpty: Boolean = items.wasEmpty
+
+  def remove(wme: Wme) {
+    items.rem(wme)
+  }
+
+  def getWmes(fields: List[FieldToTest], values: List[Value]): MutSet[Wme] =
+    items.get(fields, values)
+
+  def getAllWmes: Iterator[Wme] = items.getAll
+--/
+
+  def activation(w: Wme) {
+    items.put(w)
+    w.alphaMemories = this :: w.alphaMemories // for tree-based removal
+    for (joinNode <- successors) joinNode.activationRight(w)
+  }
+
+  //  def activation(w: Wme) {
+  //    items += w
+  //    w.alphaMemories = this :: w.alphaMemories // for tree-based removal
+  //    for (joinNode <- successors) joinNode.activationRight(w)
+  //  }
+
+    config.addEdge(this, 'items, items)
+    //config.addEdges(this, 'items, items)
+
+-- build_or_share_alpha_memory: --
+
+for (wme <- oldAlphaMemory.getAllWmes) {
+
+
+-- JoinerTarget: --
+
+  protected val items = new DoubleIndex[(Int, FieldToTest), Token]()
+  //var items: List[Token] = List()
+
+--\
+  def addFields(fields: List[(Int, FieldToTest)]) {
+    items.addFields(fields)
+  }
+
+  def isEmpty: Boolean = items.isEmpty
+
+  def wasEmpty: Boolean = items.wasEmpty
+
+  def remove(token: Token) {
+    items.rem(token)
+  }
+
+  def getTokens(fields: List[(Int, FieldToTest)], values: List[Value]): MutSet[Token] =
+    items.get(fields, values)
+
+  def getAllTokens: Iterator[Token] = items.getAll
+--/
+
+    config.addEdge(this, 'items, items)
+    //config.addEdges(this, 'items, items)
+
+-- BetaMemory: --
+
+    items.put(makeToken(null, null))
+    //items = makeToken(null, null) :: items
+
+activationLeft:
+    items.put(newToken)
+    //items = newToken :: items
+
+-- PNode: --
+
+activationLeft:
+    items.put(newToken)
+    //items = newToken :: items
+
+-- Joiner: --
+
+  val tests: List[TestAtJoinNode]
+  val tokenFieldsToTest: List[(Int, FieldToTest)] =
+    for (test <- tests) yield (test.relativeConditionNumberInToken, test.fieldOfTokenWme)
+  val wmeFieldsToTest: List[FieldToTest] =
+    for (test <- tests) yield test.fieldOfWme
+
+  parent.asInstanceOf[JoinerTarget].addFields(tokenFieldsToTest)
+  alphaMemory.addFields(wmeFieldsToTest)
+
+-- JoinNode: --
+
+activationLeft:
+  assert(parent.wasEmpty == rightUnlinked) // See comment below.
+    if (parent.wasEmpty) { // Should test rightUnlinked (p. 88 fn. 5).
+      //assert((parent.items.length == 1) == rightUnlinked) // See comment below.
+      //if (parent.items.length == 1) { // Should test rightUnlinked (p. 88 fn. 5).
+
+     //if (alphaMemory.items == Nil) {
+      if (alphaMemory.isEmpty) {
+
+ //    for (w <- alphaMemory.items if performJoinTests(tests, t, w); child <- children) {
+    //      child.asInstanceOf[JoinerTarget].activationLeft(t, w)
+    //    }    
+    val values = t.extractValues(tokenFieldsToTest).get
+    for (w <- alphaMemory.getWmes(wmeFieldsToTest, values); child <- children) {
+      child.asInstanceOf[JoinerTarget].activationLeft(t, w)
+    }
+
+activationRight:
+//if (alphaMemory.items.size == 1) { // just became nonempty
+    if (alphaMemory.wasEmpty) {
+
+   if (parent.isEmpty) {
+        //if (parent.items == Nil) {
+
+   //    for (t <- parent.items if performJoinTests(tests, t, w); child <- children) {
+    //      child.asInstanceOf[JoinerTarget].activationLeft(t, w)
+    //    }
+    val values = w.extractValues(wmeFieldsToTest).get
+    for (t <- parent.getTokens(tokenFieldsToTest, values); child <- children) {
+      child.asInstanceOf[JoinerTarget].activationLeft(t, w)
+    }
+
+-- NegativeNode: --
+
+activationLeft:
+   items.put(newToken)
+    //items = newToken :: items
+
+   //    for (wme <- alphaMemory.items) {
+    //      if (performJoinTests(tests, newToken, wme)) {
+    //        val jr = NegativeJoinResult(newToken, wme) // Thesis page 42 says 'w', but I think it is wrong
+    //        newToken.joinResults = jr :: newToken.joinResults
+    //        wme.negativeJoinResults = jr :: wme.negativeJoinResults // Thesis page 42 says 'w', but I think it is wrong
+    //      }
+    //    }
+    val values = newToken.extractValues(tokenFieldsToTest).get
+    for (wme <- alphaMemory.getWmes(wmeFieldsToTest, values)) {
+      val jr = NegativeJoinResult(newToken, wme) // Thesis page 42 says 'w', but I think it is wrong
+      newToken.joinResults = jr :: newToken.joinResults
+      wme.negativeJoinResults = jr :: wme.negativeJoinResults // Thesis page 42 says 'w', but I think it is wrong
+    }
+
+activationRight:
+//    for (t <- items) {
+    //      if (performJoinTests(tests, t, w)) {
+    //        if (t.joinResults == Nil) t.removeDescendents()
+    //        val jr = NegativeJoinResult(t, w)
+    //        t.joinResults = jr :: t.joinResults
+    //        w.negativeJoinResults = jr :: w.negativeJoinResults
+    //      }
+    //    }
+    //--
+    val values = w.extractValues(wmeFieldsToTest).get
+    for (t <- parent.asInstanceOf[JoinerTarget].getTokens(tokenFieldsToTest, values)) {
+      if (t.joinResults == Nil) t.removeDescendents()
+      val jr = NegativeJoinResult(t, w)
+      t.joinResults = jr :: t.joinResults
+      w.negativeJoinResults = jr :: w.negativeJoinResults
+    }
+
+-- NccNode: --
+
+activationLeft:
+ //items = newToken :: items 
+    items.put(newToken)
+
+-- NccPartnerNode: --
+
+activationLeft:
+ // We need a different kind of index for this: from (parent,wme) to (parent,wme)
+    // However, perhaps stack that optimization
+    nccNode.getAllTokens.toSet somematch {
+      //nccNode.items somematch {
+
+-- Rete: --
+
+build_or_share_join_node:
+  //if (bm.items == Nil) {
+    if (bm.isEmpty) {
+
+//} else if (am.items == Nil) bm.children = bm.children - joinNode
+    } else if (am.isEmpty) bm.children = bm.children - joinNode
+
+build_or_share_negative_node:
+ //if (negNode.items == Nil) {
+    if (negNode.isEmpty) {
+
+update_new_node_with_matches_from_above:
+ for (token <- parentBetaMemory.getAllTokens) newJoinNode.activationLeft(token)
+      //for (token <- parentBetaMemory.items) newJoinNode.activationLeft(token)
+
+ for (wme <- parentJoinNode.alphaMemory.getAllWmes) parentJoinNode.activationRight(wme)
+
+ for (token <- parentNegativeNode.getAllTokens if token.joinResults == Nil)
+          //for (token <- parentNegativeNode.items if token.joinResults == Nil)
+
+  for (token <- parentNccNode.getAllTokens if token.nccResults == Nil)
+          //for (token <- parentNccNode.items if token.nccResults == Nil)
+
+delete_node_and_any_unused_ancestors:
+ for (token <- nodeWithItems.getAllTokens) token.remove()
+      // the Nil assignment should really not be necessary due to garbage collection.
+      // for (token <- nodeWithItems.items) token.remove()
+      // nodeWithItems.items = Nil

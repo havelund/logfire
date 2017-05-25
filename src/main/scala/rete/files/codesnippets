@@ -1,0 +1,378 @@
+
+  /**
+   * Lifts an instance of a (usually case) class to a map. The lifting converts the object to the internal
+   * format of a fact.
+   */
+
+  implicit def convAnyToFact(obs: Any): Fact = {
+    val className = obs.getClass().getSimpleName().replace("$", "")
+    assert(!className.contains("."), s"$obs has class name $className")
+    val classFields = obs.getClass().getDeclaredFields()
+    var map: Map[Symbol, Any] = Map('kind -> Symbol(className))
+    for (classField <- classFields) {
+      classField.setAccessible(true)
+      val value = classField.get(obs)
+      val fieldName = classField.getName()
+      if (!fieldName.contains("$")) {
+        map += (Symbol(fieldName) -> value)
+      }
+    }
+    println(".. in contract ..")
+    println("input event             : " + obs)
+    println("implicitly inferred map : " + map)
+    println(".................")
+    map
+  }
+
+----
+
+  /**
+   * Lifts any object to a map, which maps the fields of the object (represented as symbols)
+   * to the values they denote in the object. This implicit function is applied when one of the functions
+   * <code>addMapEvent(map: Map[Symbol,Any]):Unit</code> or <code>addMapFact(map: Map[Symbol,Any]):Unit</code> is
+   * applied to some object representing an event or fact. The function converts the object into a map,
+   * which these functions are then applied to, corresponding to submitting and event or fact to a monitor.
+   */
+
+  implicit def convAnyToMap(obs: Any): Map[Symbol, Any] = {
+    val className = obs.getClass().getSimpleName()
+    assert(!className.contains(".") && !className.contains("$"), s"$obs has class name $className")
+    val classFields = obs.getClass().getDeclaredFields()
+    var map: Map[Symbol, Any] = Map('kind -> Symbol(className))
+    for (classField <- classFields) {
+      classField.setAccessible(true)
+      val value = classField.get(obs)
+      val fieldName = classField.getName()
+      assert(!fieldName.contains("$"), s"$fieldName is not well-formed")
+      map += (Symbol(fieldName) -> value)
+    }
+    println("------------")
+    println("input event             : " + obs)
+    println("implicitly inferred map : " + map)
+    println("------------")
+    map
+  }
+
+// @@@\
+
+class AlphaNetworkHashed extends AlphaNetwork {
+  // Section 2.2.2 Dataflow Network with Hashing
+  // One common TestNode class
+
+  def getTop: Visual = top
+
+  // TODO NEXT: sort the fields
+  def build_or_share_alpha_memory(condition: BasicCondition): AlphaMemory = {
+    var current_node: ConstantTestNode = top
+    for ((field, Constant(value)) <- condition.constraints) {
+      current_node = build_or_share_constant_test_node(current_node, field, value)
+    }
+    current_node.outputMemory match {
+      case None =>
+        val newAlphaMemory = new AlphaMemory
+        current_node.outputMemory = Some(newAlphaMemory)
+        for (wme <- workingMemory) {
+          if (passesConstantTests(wme, condition)) newAlphaMemory.activation(wme)
+        }
+        return newAlphaMemory
+      case Some(oldAlphaMemory) =>
+        return oldAlphaMemory
+    }
+  }
+
+  // TODO:
+  def delete_alpha_memory(am: AlphaMemory) {}
+
+  def activation(w: Wme) {
+    top.activation(w)
+  }
+
+  // --- private: --- 
+
+  private var workingMemory: Set[Wme] = Set()
+
+  private var top: ConstantTestNode = new ConstantTestNode
+
+  private class ConstantTestNode extends Visual {
+    var fieldToTest: Option[FieldToTest] = None
+    var index: Map[Value, ConstantTestNode] = Map() // only defined if fieldToTest != None 
+    var outputMemory: Option[AlphaMemory] = None
+    var children: List[ConstantTestNode] = Nil
+
+    def activation(w: Wme) {
+      fieldToTest match {
+        case None =>
+        case Some(field) =>
+          w.lookup(field) match {
+            case None =>
+            case Some(value) =>
+              val cTestNode = index.getOrElse(value, null)
+              if (cTestNode != null) cTestNode.activation(w)
+          }
+      }
+      outputMemory match {
+        case None =>
+        case Some(alphaMemory) =>
+          alphaMemory.activation(w)
+      }
+      for (c <- children) c.activation(w)
+    }
+
+    def toGraph(config: Config) {
+      config.colorNode(this, "blue")
+      config.addFields(this,
+        'fieldToTest -> fieldToTest)
+      outputMemory match {
+        case None =>
+        case Some(alpha) =>
+          config.addEdge(this, 'memory, alpha)
+      }
+      config.addEdges(this, 'children, children)
+      for ((value, ctestnode) <- index)
+        config.addEdge(this, 'index, ctestnode, "label" -> value.toString)
+    }
+
+    override def toString: String =
+      show(this, "ConstantTestNode",
+        "fieldToTest" -> fieldToTest,
+        "index" -> index,
+        "outputMemory" -> outputMemory,
+        "children" -> children)
+  }
+
+  // TODO NOW:
+  private def build_or_share_constant_test_node(parent: ConstantTestNode, f: FieldToTest, value: Value): ConstantTestNode = {
+
+    null
+  }
+
+  //  private def build_or_share_constant_test_node(parent: ConstantTestNode, f: FieldToTest, value: Value): ConstantTestNode =
+  //    {
+  //      for (child <- parent.children) {
+  //        if (child.fieldToTest == f && child.thingTheFieldMustEqual == value)
+  //          return child
+  //      }
+  //      val test = ConstantTestNode(parent, f, value, None, Nil)
+  //      parent.children = test :: parent.children
+  //      test
+  //    }
+  // ---
+  //  var fieldToTest: Option[FieldToTest] = None
+  //  var index: Map[Value, ConstantTestNode] = Map() // only defined if fieldToTest != None 
+  //  var outputMemory: Option[AlphaMemory] = None
+  //  var children: List[ConstantTestNode] = Nil
+}
+
+// @@@/
+
+// @@@\
+
+trait iAlphaNetwork {
+  def getTop: Visual
+  def build_or_share_alpha_memory(condition: BasicCondition): AlphaMemory
+  def delete_alpha_memory(am: AlphaMemory)
+  def activation(w: Wme)
+}
+
+class AlphaNetworkDataFlow extends AlphaNetwork {
+  // Section 2.2.1 Dataflow Network
+
+  def getTop: Visual = top
+
+  def build_or_share_alpha_memory(condition: BasicCondition): AlphaMemory = {
+    var current_node: ConstantTestNode = top
+    for ((field, Constant(value)) <- condition.constraints) {
+      current_node = build_or_share_constant_test_node(current_node, field, value)
+    }
+    current_node.outputMemory match {
+      case None =>
+      case Some(alphaMemory) =>
+        return alphaMemory
+    }
+    val am = new AlphaMemory
+    current_node.outputMemory = Some(am)
+    recordAlphaMemory(am, current_node) // added to enable removal
+    for (wme <- workingMemory) {
+      if (passesConstantTests(wme, condition)) am.activation(wme)
+    }
+    am
+  }
+
+  def delete_alpha_memory(am: AlphaMemory) {
+    val parent = testNodeOf(am)
+    testNodeOf = testNodeOf - am
+    parent.outputMemory = None
+    delete_constant_test_node_and_any_unused_ancestors(parent)
+  }
+
+  def activation(w: Wme) {
+    top.activation(w)
+  }
+
+  override def toString: String = show(this, "AlphaNetwork",
+    "top" -> top)
+
+  // --- private: ---
+
+  private var top: ConstantTestNode = ConstantTestNode(null, 'notest, null, None, Nil)
+  private var testNodeOf: Map[AlphaMemory, ConstantTestNode] = Map() // used for removal
+
+  private case class ConstantTestNode(
+    parent: ConstantTestNode,
+    fieldToTest: FieldToTest,
+    thingTheFieldMustEqual: Value,
+    var outputMemory: Option[AlphaMemory],
+    var children: List[ConstantTestNode]) extends Visual {
+
+    def workingMemory: Set[Wme] = {
+      var result: Set[Wme] = Set()
+      outputMemory match {
+        case None =>
+        case Some(alphaMemory) =>
+          result ++= alphaMemory.items
+      }
+      for (child <- children) {
+        result ++= child.workingMemory
+      }
+      result
+    }
+
+    def activation(w: Wme) {
+      if (fieldToTest != 'notest && !w.matches(fieldToTest, thingTheFieldMustEqual))
+        return
+      outputMemory match {
+        case None =>
+        case Some(alphaMemory) =>
+          alphaMemory.activation(w)
+      }
+      for (c <- children) c.activation(w)
+    }
+
+    def toGraph(config: Config) {
+      config.colorNode(this, "blue")
+      config.addFields(this,
+        'fieldToTest -> fieldToTest,
+        'thingTheFieldMustEqual -> thingTheFieldMustEqual)
+      outputMemory match {
+        case None =>
+        case Some(alpha) =>
+          config.addEdge(this, 'memory, alpha)
+      }
+      config.addEdges(this, 'children, children)
+    }
+
+    override def toString: String =
+      show(this, "ConstantTestNode",
+        "fieldToTest" -> fieldToTest,
+        "thingTheFieldMustEqual" -> thingTheFieldMustEqual,
+        "outputMemory" -> outputMemory,
+        "children" -> children)
+  }
+
+  private def passesConstantTests(w: Wme, c: BasicCondition): Boolean = {
+    c.constraints forall {
+      case (f, Constant(k)) => w(f) == k
+      case _ => true
+    }
+  }
+
+  private def build_or_share_constant_test_node(parent: ConstantTestNode, f: FieldToTest, value: Value): ConstantTestNode =
+    {
+      for (child <- parent.children) {
+        if (child.fieldToTest == f && child.thingTheFieldMustEqual == value)
+          return child
+      }
+      val test = ConstantTestNode(parent, f, value, None, Nil)
+      parent.children = test :: parent.children
+      test
+    }
+
+  private def workingMemory: Set[Wme] = top.workingMemory
+
+  private def recordAlphaMemory(am: AlphaMemory, node: ConstantTestNode) {
+    testNodeOf = testNodeOf + (am -> node) // used for removal
+  }
+
+  private def delete_constant_test_node_and_any_unused_ancestors(node: ConstantTestNode) {
+    if (node.outputMemory == None && node.children == Nil) {
+      val parent = node.parent
+      if (parent != null) {
+        parent.children = parent.children - node
+        delete_constant_test_node_and_any_unused_ancestors(parent)
+      }
+    }
+  }
+}
+
+// @@@/
+
+// -----------------------
+// --- Generator util: ---
+// -----------------------
+
+// from http://notes.langdale.com.au/Generators_in_Scala.html
+// from https://gist.github.com/574873
+
+//import scala.util.continuations._
+//
+//class Generator[A] extends Iterator[A] with (A => Unit @suspendable) {
+//  private var a: Option[A] = None
+//  private var k: Option[Unit => Unit] = None
+//
+//  def next = {
+//    val a0 = a.get
+//    val k0 = k.get
+//    a = None
+//    k = None
+//    k0()
+//    a0
+//  }
+//
+//  def hasNext = k.isDefined
+//
+//  def apply(a0: A): Unit @suspendable = {
+//    a = Some(a0)
+//    shift { k0: (Unit => Unit) => k = Some(k0) }
+//  }
+//}
+//
+//object Generator {
+//  def generator[A](f: (A => Unit @suspendable) => Unit @suspendable): Iterator[A] = {
+//    val g = new Generator[A]
+//    reset { f(g) }
+//    g
+//  }
+//
+//  trait SuspendableForeach[A] { def foreach(f: A => Unit @suspendable): Unit @suspendable }
+//
+//  def suspendable[A](ible: Iterable[A]) = new SuspendableForeach[A] {
+//    def foreach(f: A => Unit @suspendable): Unit @suspendable = {
+//      val i = ible.iterator
+//      while (i.hasNext) f(i.next)
+//    }
+//  }
+//}
+//import Generator._
+
+and then in DoubleIndex:
+
+def getAll: Iterator[IndexedElement] = generator[IndexedElement] { yld =>
+
+    // The following for-loop is the "lazy" co-routine version of this:
+    //
+    // for (
+    //   (fieldIndexes, valueMap) <- index;
+    //   (values, elementSet) <- valueMap;
+    //   element <- elementSet
+    // ) yield element
+    //
+    // It will yield duplicates, hence perhaps not a good idea,
+    // and likely really not important. Adding new rules is rare.
+
+    for (
+      pair1 <- suspendable(index);
+      pair2 <- suspendable(pair1._2);
+      element <- suspendable(pair2._2)
+    ) yld(element)
+  }
+  

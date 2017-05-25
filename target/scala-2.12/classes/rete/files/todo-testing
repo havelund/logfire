@@ -1,0 +1,68 @@
+
+Condition: 
+  [x]  'N('x,'y)
+  [x]  'N('x,4)
+  [x]  'N('field1 -> x, 'field2 -> 4) 
+ 
+  [x]  not(c)
+  [-]  not(c1, c2, ...,cn) for n > 1
+  [x]  '_
+  [x]  ANY
+
+Rule:
+
+  [x]  c1 and c2 and ... 
+  [x]  c as l
+  [x]  --
+  [x]  ==
+  [x]  &
+  [x]  |->
+  
+Actions
+
+  [x]  then(a1,a2,...)
+  [x]  then(stmt)    
+  [x]  where(c) then(stmt)  
+
+  [x]  error
+  [x]  error(str)
+  [-]  print(str)
+  [-]  code(smt)
+  [x]  add(pc)
+  [x]  rem(l)
+
+  [-]  a1 and a2
+  [x]  'Open('x,5)
+
+Semantics
+
+  [x]  Inference
+
+Symbol Operations
+  [x] 'x.i, 'x.f, 'x.s
+
+Adding and deleting facts
+   
+  [x]  insert
+  [x]  remove
+  [x]  update
+  [x]  replace
+  [x]  ensure
+
+  [x]  addMapEvent(map: Map[Symbol, Any])
+  [x]  addMapEvent(fields: (Symbol, Any)*)
+  [x]  addMapEvent(kind: Symbol)(fields: (Symbol, Any)*)
+  [x]  addEvent(kind: Symbol)(values: Any*)
+
+  [x]  addMapFact(map: Map[Symbol, Any]): Fact
+  [x]  addMapFact(fields: (Symbol, Any)*): Fact
+  [x]  addMapFact(kind: Symbol)(fields: (Symbol, Any)*): Fact
+  [x]  addFact(kind: Symbol)(values: Any*): Fact
+
+  [x]  printMap
+  [x]  getMaps
+  [x]  clearFacts(pred)
+  [x]  writeFacts(file)
+  [x]  loadFacts(file)
+  [x]  readFacts(file)
+  

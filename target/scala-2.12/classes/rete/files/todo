@@ -1,0 +1,165 @@
+
+---------------------------------
+Case classes as events and facts:
+---------------------------------
+
+
+
+-------
+Syntax:
+-------
+
+* Filter functions to a monitor:
+
+  filter(pred)
+  filterNot(pred)
+
+* This creates an infinite loop:
+
+  trait DenyCounter extends ResourceMonitor {
+    val Counter = fact
+
+    "r12" -- Deny('s,'t,'r) & Counter('n) |-> {
+      ensure('n < 2)
+      update(Counter('n + 1))
+    }
+
+    addFact(Counter)(0)
+  }
+
+  This means that it becomes difficult to count, unless update is changed to update a fact
+  without triggering re-computation.
+
+* print token on fail
+
+* It should really print results. Perhaps there needs to be an official END event
+
+* add a newSymbol function that generates a unique symbol (for writing patterns).
+
+* Perhaps 'event' and 'fact' are not good names for the symbol functions.
+  - SYMBOL
+
+* documentation: tutorial + (pc, code actions get lifted, binding, '_)
+
+* Wellformed/syntax check:
+  - that parameter names on the right hand side are actually introduced on left hand side.
+
+* nested conditions (as in Ruler, as in state machines). Or as in TraceContract where one moves.
+  Interesting two different ways of doing it.
+
+* Module system, local variables, ability to compose monitors
+
+* printHistory()
+
+* final states
+
+* Objects, real syntax, and mixed with Scala: just text parsed with (.*) - (like in rooscaloo)
+  Although I am not sure I like .* though. It means that only the generated code gets type checked.
+  The object idea is, however, clearly a good idea. Hammurabi is another tool, a total internal DSL
+  created by Mario Fusco (mario.fusco@gmail.com).
+
+  https://community.jboss.org/wiki/functionalProgrammingInDrools
+
+* Table:
+                     | Internal DSL       | External DSL
+  -------------------|--------------------|--------------
+  cannot write code  | deep:              | noholes:    |
+                     | holes: ScalaRules  | LTL         |
+                     | noholes: LTL       |             |
+  -------------------------------------------------------
+  can write code     | shallow:           | holes:      |
+                     | TraceContract      | Roosclaloo  |
+                     | Hammurabi          |             |
+  -------------------|-----------------------------------
+                       reflection           parser comb.
+                       macros
+                       implicits, ...
+
+* Consider TraceContract syntax and using case objects as facts
+
+* Defining specification patterns, quantifiers (to control variables), ...
+
+* Consider Ruler syntax
+
+* Add possibility of deleting facts by equivalence
+
+* RuleML: (use XML or perhaps Json)
+
+* External versus internal
+
+* Type checking, syntax checking (parameters etc)
+
+* Right hand sides in general where you can write: 'x + 1. It turned out a little
+  complicated and is not necessarily needed since we have code.
+
+* More sophisticated notion of conditions.
+  
+* easier way of deleting items, for example, something like ok for example
+
+* macros, for example for defining events and facts, with type checking of args.
+
+* Integration with TraceContract
+
+
+=====================================
+--- BELOW ARE THINGS THAT CAN WAIT ---
+======================================
+
+------------------------
+Bugs/changes to be made:
+------------------------
+
+* I have not tested not(A('f -> 'x)) where an event A('g -> 7) appears (non-matching domain).
+
+* ANY should really only refer to events, not to facts, otherwise we get cycles too easily
+
+* fact memory is not listed after we remove a fact
+
+* a fact operation will "refer" to the event number of previous event
+
+* events are not sorted time-wise within the same event number
+
+* fact addition does not update history, see test 4_3
+
+* The problem with generated facts that don't get used anywhere
+
+* Observe whether unlinking choices are in favor of the event model.
+
+* In JoinNode left activation I should test on rightUnlinked. I insert an assert to test
+  current solution against this variable. 
+
+* delete_node_and_any_unused_ancestors: 
+  - why test on reference count and not Nil?
+  - is overly complicated and does not match code on page 39.
+
+* AlphaMemory.relink list operations are slow.
+
+* Does equality work correctly? Wme is a case class with binding as argument. This prevents
+  facts to be duplicated, which is great. But are there traps?
+
+* leftUnlinked: not sure all cases are covered. Not in thesis. Only used for graphics.
+  They are not covered it turns out. I changed the tests in toGraph in trait Joiner.
+
+* visualize lists, sets, and maps.
+
+* Numbers as fields to test
+
+
+-------------
+Optimization:
+-------------
+
+* Concurrency/data flow
+
+* Bindings instead of linked tokens.
+
+* One global index as suggested in thesis.
+
+
+--------
+Testing:
+--------
+
+* Fill in test0 with tutorial example.
+
+  

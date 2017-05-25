@@ -1,0 +1,593 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>rete - rete</title>
+          <meta name="description" content="rete - rete" />
+          <meta name="keywords" content="rete rete" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../lib/template.js"></script>
+      <script type="text/javascript" src="../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../index.html';
+            var hash = 'rete.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../lib/package_big.png" />
+        
+        <h1>rete</h1><span class="permalink">
+      <a href="../index.html#rete.package" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rete</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p><b>LogFire</b> is a Scala package for analyzing <i>event traces</i>.</p><h4> Events </h4><p>A trace is considered
+as a sequence of events, where an individual event is a mapping from symbols to values.
+That is, an event has the type:</p><pre><span class="std">Map</span>[<span class="std">Symbol</span>, <span class="std">Any</span>]</pre><p>For example, the following is an event:</p><pre><span class="std">Map</span>('command -&gt; <span class="lit">"DRIVE"</span>, 'time -&gt; <span class="num">267833</span>)</pre><p>Events can (<u>but do not need to</u>) have a kind, indicated by a
+the symbol <code>'kind</code> mapping to a symbol, as in:</p><pre><span class="std">Map</span>('kind -&gt; <span class="lit">'EVR, '</span>command -&gt; <span class="lit">"DRIVE"</span>, 'time -&gt; <span class="num">267833</span>)</pre><p>Such events can (<u>but do not need to</u>) be written, as we shall see,
+in the special format:</p><pre><span class="lit">'EVR('</span>command -&gt; <span class="lit">"DRIVE"</span>, 'time -&gt; <span class="num">267833</span>)</pre><p>Use of Scala's implicit function definitions under the hood will make all
+this work. As we shall see, events can also be provided in positional format:</p><pre>'EVR(<span class="lit">"DRIVE"</span>,<span class="num">267833</span>)</pre><p>This has the same meaning as:</p><pre><span class="std">Map</span>('kind -&gt; <span class="lit">'EVR, '</span>one -&gt; <span class="lit">"DRIVE"</span>, 'two -&gt; <span class="num">267833</span>)</pre><p>Events are short-lived: when submitting an event to a monitor it only survives
+in one step, enough to evaluate the left-hand sides of active rules.</p><h4> Facts </h4><p>Facts are in essence of the same format as events. They are created during monitoring
+as rules match and rule right-hand sides are executed. In contrast to events, however,
+a fact survives in the fact memory until it is removed again explicitly by a rule or
+by a call of a method designated for fact removal.</p><h4> Monitors </h4><h5> Using positional events </h5><p>A monitor is a user-defined subclass of the class <code>Monitor</code>, which defines what rules
+to be applied during event monitoring. Consider the following monitor that monitors
+three requirements about issued commands and their successes and failures.
+The conditions of the rules and generated facts are formulated in a positional style in contrast
+to as maps, which will be shown in a subsequent monitor for the same requirements.</p><pre><span class="kw">class</span> CommandMonitor1 <span class="kw">extends</span> Monitor {
+  <span class="cmt">// Requirements:</span>
+  <span class="cmt">// - An issued command should eventually succeed without failing first.</span>
+  <span class="cmt">// - A command cannot succeed more than once.</span>
+  <span class="cmt">// - A non-issued command cannot succeed.</span>
+
+  <span class="lit">"record command"</span> --
+    'COMMAND(<span class="lit">'name, '</span>number) |-&gt; insert('Commanded(<span class="lit">'name, '</span>number))
+
+  <span class="lit">"record success"</span> --
+    'Commanded(<span class="lit">'n, '</span>x) &amp; 'SUCCESS(<span class="lit">'n, '</span>x) |-&gt; replace('Commanded)('Succeeded(<span class="lit">'n, '</span>x))
+
+  <span class="lit">"record failure"</span> --
+    'Commanded(<span class="lit">'n, '</span>x) &amp; <span class="lit">'FAIL('</span>n, 'x) |-&gt; {
+    remove('Commanded)
+    fail(s<span class="lit">"command (${'n.s},${'x.i}) failed before success"</span>)
+  }
+
+  <span class="lit">"double succcess"</span> --
+    'Succeeded(<span class="lit">'n, '</span>x) &amp; 'SUCCESS(<span class="lit">'n, '</span>x) |-&gt; fail(s<span class="lit">"two successes of (${'n.s},${'x.i}})"</span>)
+
+  <span class="lit">"success of non-issed command"</span> --
+    'SUCCESS(<span class="lit">'n, '</span>x) &amp; not('Commanded(<span class="lit">'n, '</span>x)) |-&gt; fail(s<span class="lit">"success of non-issued command (${'n.s},${'x.i}})"</span>)
+
+  <span class="lit">"catch non-succeeded commands"</span> --
+    'END() &amp; 'Commanded(<span class="lit">'n, '</span>x) |-&gt; {
+    fail(s<span class="lit">"command (${'n.s},${'x.i}}) never succeeded"</span>)
+  }
+}</pre><p>This monitor can now be instantiated and subsequently be fed a sequence of events as follows:</p><pre><span class="kw">object</span> Test1 {
+  <span class="kw">def</span> main(args: <span class="std">Array</span>[<span class="std">String</span>]) {
+    <span class="kw">val</span> m = <span class="kw">new</span> CommandMonitor1
+    m.addEvent('COMMAND)(<span class="lit">"STOP_DRIVING"</span>, <span class="num">1</span>)
+    m.addEvent('COMMAND)(<span class="lit">"START_CAMERA"</span>, <span class="num">2</span>)
+    m.addEvent('COMMAND)(<span class="lit">"TURN_ANTENNA"</span>, <span class="num">3</span>)
+    m.addEvent('FAIL)(<span class="lit">"STOP_DRIVING"</span>, <span class="num">1</span>)
+    m.addEvent('SUCCESS)(<span class="lit">"START_CAMERA"</span>, <span class="num">2</span>)
+    m.addEvent('SUCCESS)(<span class="lit">"START_CAMERA"</span>, <span class="num">2</span>)
+    m.addEvent('SUCCESS)(<span class="lit">"START_DRIVING"</span>, <span class="num">4</span>)
+    m.addEvent('END)()
+  }
+}</pre><p>Error messages will be printed on standard out as violations are detected.</p><h5> Using map events </h5><p>The same requirements can be formalized using map-like events. This is done in the following
+monitor. Note that facts are still specified using positional notation (although also map-based
+notation is possible for facts). Usually facts have few arguments, and hence a positional style
+is preferable. Instead of using quoted names for events and facts (kinds), we apply the
+event and fact functions, which allow us to omit the quotes.</p><pre><span class="kw">class</span> CommandMonitor2 <span class="kw">extends</span> Monitor {
+  <span class="cmt">// - An issued command should eventually succeed without failing first.</span>
+  <span class="cmt">// - A command cannot succeed more than once.</span>
+  <span class="cmt">// - A non-issued command cannot succeed.</span>
+
+  <span class="kw">val</span> COMMAND, SUCCESS, FAIL, END = event
+  <span class="kw">val</span> Commanded, Succeeded = fact
+
+  <span class="lit">"record command"</span> --
+    COMMAND('name -&gt; <span class="lit">'x, '</span>number -&gt; 'y) |-&gt; insert(Commanded(<span class="lit">'x, '</span>y))
+
+  <span class="lit">"record success"</span> --
+    Commanded(<span class="lit">'n, '</span>x) &amp; SUCCESS('name -&gt; <span class="lit">'n, '</span>number -&gt; 'x) |-&gt; replace(Commanded)(Succeeded(<span class="lit">'n, '</span>x))
+
+  <span class="lit">"record failure"</span> --
+    Commanded(<span class="lit">'n, '</span>x) &amp; FAIL('name -&gt; <span class="lit">'n, '</span>number -&gt; 'x) |-&gt; {
+    remove(Commanded)
+    fail(s<span class="lit">"command (${'n.s},${'x.i}) failed before success"</span>)
+  }
+
+  <span class="lit">"double succcess"</span> --
+    Succeeded(<span class="lit">'n, '</span>x) &amp; SUCCESS('name -&gt; <span class="lit">'n, '</span>number -&gt; 'x) |-&gt; fail(s<span class="lit">"two successes of (${'n.s},${'x.i}})"</span>)
+
+  <span class="lit">"success of non-issed command"</span> --
+    SUCCESS('name -&gt; <span class="lit">'n, '</span>number -&gt; 'x) &amp; not(Commanded(<span class="lit">'n, '</span>x)) |-&gt; fail(s<span class="lit">"success of non-issued command (${'n.s},${'x.i}})"</span>)
+
+  <span class="lit">"catch non-succeeded commands"</span> --
+    END() &amp; Commanded(<span class="lit">'n, '</span>x) |-&gt; {
+    fail(s<span class="lit">"command (${'n.s},${'x.i}}) never succeeded"</span>)
+  }
+}</pre><p>This monitor can now be instantiated and fed a sequence of map-events, as follows.
+We here use a different style, storing first the events in a trace and then processing
+the trace.</p><pre><span class="kw">object</span> Test2 {
+  <span class="kw">def</span> main(args: <span class="std">Array</span>[<span class="std">String</span>]) {
+    <span class="kw">val</span> m = <span class="kw">new</span> CommandMonitor2
+    <span class="kw">val</span> trace = <span class="std">List</span>(
+      <span class="std">Map</span>('kind -&gt; 'COMMAND, 'name -&gt; <span class="lit">"STOP_DRIVING"</span>, 'number -&gt; <span class="num">1</span>),
+      <span class="std">Map</span>('kind -&gt; 'COMMAND, 'name -&gt; <span class="lit">"START_CAMERA"</span>, 'number -&gt; <span class="num">2</span>),
+      <span class="std">Map</span>('kind -&gt; 'COMMAND, 'name -&gt; <span class="lit">"TURN_ANTENNA"</span>, 'number -&gt; <span class="num">3</span>),
+      <span class="std">Map</span>('kind -&gt; <span class="lit">'FAIL, '</span>name -&gt; <span class="lit">"STOP_DRIVING"</span>, 'number -&gt; <span class="num">1</span>),
+      <span class="std">Map</span>('kind -&gt; 'SUCCESS, 'name -&gt; <span class="lit">"START_CAMERA"</span>, 'number -&gt; <span class="num">2</span>),
+      <span class="std">Map</span>('kind -&gt; 'SUCCESS, 'name -&gt; <span class="lit">"START_CAMERA"</span>, 'number -&gt; <span class="num">2</span>),
+      <span class="std">Map</span>('kind -&gt; 'SUCCESS, 'name -&gt; <span class="lit">"START_DRIVING"</span>, 'number -&gt; <span class="num">4</span>),
+      <span class="std">Map</span>('kind -&gt; 'END)
+    )
+    <span class="kw">for</span> (event <span class="kw">&lt;-</span> trace) m.addMapEvent(event)
+  }
+}</pre><h4> Specification patterns </h4><p>LogFire makes it possible to define specification patterns as methods.
+The following example illustrates the definition of the 3 temporal logic
+patterns:</p><pre>r1 : always(a -&gt; !b weakuntil c)
+r2 : always(a -&gt; &lt;&gt;b)
+r3 : always(b -&gt; &lt;*&gt;a) - where &lt;*a&gt; means sometime in the past</pre><p>The syntax for the 3 patterns are:</p><pre><span class="lit">"r1"</span> --- a -| b |-&gt; c
+<span class="lit">"r2"</span> --- a --&gt; b
+<span class="lit">"r3"</span> --- a <span class="kw">&lt;-</span>- b</pre><p>These patterns are defined in the following class:</p><pre><span class="kw">class</span> Observer <span class="kw">extends</span> Monitor {
+  <span class="kw">def</span> absence(name: <span class="std">String</span>)(a: Cond, b: Cond, c: Cond) {
+    <span class="kw">val</span> a_seen_sym = newSymbol()
+    <span class="kw">val</span> a_seen = a_seen_sym(a.getVariables: _*)
+    <span class="lit">"a"</span> -- a |-&gt; a_seen
+    <span class="lit">"b"</span> -- b &amp; a_seen |-&gt; fail(s<span class="lit">"$name - ${eval(a)} and then ${eval(b)} before ${eval(c)}"</span>)
+    <span class="lit">"c"</span> -- c &amp; a_seen |-&gt; remove(a_seen_sym)
+  }
+
+  <span class="kw">def</span> presence(name: <span class="std">String</span>)(a: Cond, b: Cond) {
+    <span class="kw">val</span> a_seen_sym = newSymbol()
+    <span class="kw">val</span> a_seen = a_seen_sym(a.getVariables: _*)
+    <span class="lit">"a"</span> -- a |-&gt; a_seen
+    <span class="lit">"b"</span> -- b &amp; not(a_seen) |-&gt; fail(s<span class="lit">"not ${eval(a)} before ${eval(b)}"</span>)
+  }
+
+  <span class="kw">implicit</span> <span class="kw">def</span> absence_syntax(name: <span class="std">String</span>) = <span class="kw">new</span> {
+    <span class="kw">implicit</span> <span class="kw">def</span> ---(a: Cond) = <span class="kw">new</span> {
+      <span class="kw">def</span> -|(b: Cond) = <span class="kw">new</span> {
+        <span class="kw">def</span> |-&gt;(c: Cond) {
+          absence(name)(a, b, c)
+        }
+      }
+
+      <span class="kw">def</span> --&gt;(b: Cond) {
+        absence(name)(a, 'END(), b)
+      }
+
+      <span class="kw">def</span> <span class="kw">&lt;-</span>-(b: Cond) {
+        presence(name)(a, b)
+      }
+    }
+  }
+}</pre><p>This class allows us for example to write the following monitor (observer):</p><pre><span class="kw">class</span> CommandMonitor3 <span class="kw">extends</span> Observer {
+  <span class="lit">"commands must succeed"</span> ---
+    'COMMAND(<span class="lit">'x, '</span>y) --&gt; 'SUCCESS(<span class="lit">'x, '</span>y)
+
+  <span class="lit">"commands must not fail before success"</span> ---
+    'COMMAND(<span class="lit">'x, '</span>y) -| <span class="lit">'FAIL('</span>x, 'y) |-&gt; 'SUCCESS(<span class="lit">'x, '</span>y)
+
+  <span class="lit">"commands cannot succeed without having been issued"</span> ---
+    'COMMAND(<span class="lit">'x, '</span>y) <span class="kw">&lt;-</span>- 'SUCCESS(<span class="lit">'x, '</span>y)
+}</pre><p>Test1 above with <code>CommandMonitor1</code> replaced with <code>CommandMonitor3</code> yields the following
+output:</p><pre>** error: commands must not fail before success - 'COMMAND(STOP_DRIVING,<span class="num">1</span>) and then 'FAIL(STOP_DRIVING,<span class="num">1</span>) before 'SUCCESS(STOP_DRIVING,<span class="num">1</span>)
+** error: not 'COMMAND(START_DRIVING,<span class="num">4</span>) before 'SUCCESS(START_DRIVING,<span class="num">4</span>)
+** error: commands must succeed - 'COMMAND(TURN_ANTENNA,<span class="num">3</span>) and then 'END() before 'SUCCESS(TURN_ANTENNA,<span class="num">3</span>)
+** error: commands must succeed - 'COMMAND(STOP_DRIVING,<span class="num">1</span>) and then 'END() before 'SUCCESS(STOP_DRIVING,<span class="num">1</span>)</pre><h4> Using case classes to specify events and facts </h4><p>In the following is explained how one can use case classes to represent events and facts
+when writing monitors and submitting to monitors.</p><pre><span class="kw">class</span> CommandMonitor4 <span class="kw">extends</span> Monitor {
+  <span class="cmt">// First define the types of events and facts as case classes extending the trait Obs.</span>
+  <span class="cmt">// There is at this point no distinction between events and facts. Extending Obs has no</span>
+  <span class="cmt">// other purpose than to ensure that only such classes are used in rules. We add a time stamp to</span>
+  <span class="cmt">// events.</span>
+
+  <span class="cmt">// Event types:</span>
+  <span class="kw">case</span> <span class="kw">class</span> COMMAND(name: +[<span class="std">String</span>], number: +[<span class="std">Int</span>], time: +[<span class="std">Int</span>] = <span class="kw">null</span>) <span class="kw">extends</span> Obs
+  <span class="kw">case</span> <span class="kw">class</span> SUCCESS(name: +[<span class="std">String</span>], number: +[<span class="std">Int</span>], time: +[<span class="std">Int</span>] = <span class="kw">null</span>) <span class="kw">extends</span> Obs
+  <span class="kw">case</span> <span class="kw">class</span> FAIL(name: +[<span class="std">String</span>], number: +[<span class="std">Int</span>], time: +[<span class="std">Int</span>] = <span class="kw">null</span>) <span class="kw">extends</span> Obs
+  <span class="kw">case</span> <span class="kw">class</span> END <span class="kw">extends</span> Obs
+
+  <span class="cmt">// Fact types:</span>
+  <span class="kw">case</span> <span class="kw">class</span> Commanded(name: +[<span class="std">String</span>], number: +[<span class="std">Int</span>]) <span class="kw">extends</span> Obs
+  <span class="kw">case</span> <span class="kw">class</span> Succeeded(name: +[<span class="std">String</span>], number: +[<span class="std">Int</span>]) <span class="kw">extends</span> Obs
+
+  <span class="cmt">// In the above definitions, each field, which is intended to hold a value of type T is declared</span>
+  <span class="cmt">// to have type +[T], which is defined as: type +[T] = Either[T,Symbol]. This type allows for</span>
+  <span class="cmt">// values of type T as well as variables of type Symbol in the rules. Note that if only values of type T</span>
+  <span class="cmt">// will occur for a field one can use T. Likewise, if only variables of type Symbol occur as "value" for</span>
+  <span class="cmt">// a field in rules, type Symbol can be used, although indicating the intended type might be useful for</span>
+  <span class="cmt">// documentation purposes. It should be noted that types of symbols are not checked statically.</span>
+  <span class="cmt">//</span>
+  <span class="cmt">// Parameters not mentioned in conditions will have the default value defined in the case class</span>
+  <span class="cmt">// declaration. If this is 'null', such a parameter will be ignored all together in the condition</span>
+  <span class="cmt">// matching if not mentioned explicitly.</span>
+
+  <span class="cmt">// We can now write rules which use instantiations of the above case classes as event and fact conditions</span>
+  <span class="cmt">// as well as facts to be added to fact memory.</span>
+
+  <span class="lit">"record command"</span> --
+    COMMAND(name = 'x, number = 'y) |-&gt; insert(Commanded(<span class="lit">'x, '</span>y))
+
+  <span class="lit">"record success"</span> --
+    Commanded(<span class="lit">'n, '</span>x) &amp; SUCCESS(name = 'n, number = 'x) |-&gt; replace('Commanded)(Succeeded(<span class="lit">'n, '</span>x))
+
+  <span class="lit">"record failure"</span> --
+    Commanded(<span class="lit">'n, '</span>x) &amp; FAIL(name = 'n, number = 'x) |-&gt; {
+      remove('Commanded)
+      fail(s<span class="lit">"command (${'n.s},${'x.i}) failed before success"</span>)
+    }
+
+  <span class="lit">"double succcess"</span> --
+    Succeeded(<span class="lit">'n, '</span>x) &amp; SUCCESS(name = 'n, number = 'x) |-&gt; fail(s<span class="lit">"two successes of (${'n.s},${'x.i}})"</span>)
+
+  <span class="lit">"success of non-issed command"</span> --
+    SUCCESS(name = 'n, number = 'x) &amp; not(Commanded(<span class="lit">'n, '</span>x)) |-&gt; fail(s<span class="lit">"success of non-issued command (${'n.s},${'x.i}})"</span>)
+
+  <span class="lit">"catch non-succeeded commands"</span> --
+    END() &amp; Commanded(<span class="lit">'n, '</span>x) |-&gt; {
+      fail(s<span class="lit">"command (${'n.s},${'x.i}}) never succeeded"</span>)
+    }
+
+  <span class="cmt">// Note that one can refer to parameters by name in which case not all parameters need to</span>
+  <span class="cmt">// be mentioned. One can, however, also refer to parameters by position as for the Commanded fact above.</span>
+}</pre><p>We can now use the above monitor as follows.</p><pre><span class="kw">object</span> Demo4 {
+
+  <span class="cmt">// First we define the events to be submitted as case classes (can be normal classes also).</span>
+  <span class="cmt">// In this case the class does not need to extend Obs. Also, since there will be no pattern matching</span>
+  <span class="cmt">// one will use the actual types, such as String and Int.</span>
+
+  <span class="kw">case</span> <span class="kw">class</span> COMMAND(name: <span class="std">String</span>, number: <span class="std">Int</span>, time: <span class="std">Int</span>)
+  <span class="kw">case</span> <span class="kw">class</span> SUCCESS(name: <span class="std">String</span>, number: <span class="std">Int</span>, time: <span class="std">Int</span>)
+  <span class="kw">case</span> <span class="kw">class</span> FAIL(name: <span class="std">String</span>, number: <span class="std">Int</span>, time: <span class="std">Int</span>)
+  <span class="kw">case</span> <span class="kw">class</span> END
+
+  <span class="cmt">// Events are now submitted as objects with the addObjEvent method defined in the monitor.</span>
+  <span class="cmt">// Note that the field names must be the same as in the specification. One cannot use the same</span>
+  <span class="cmt">// classes as used in the specification due to the need in the specification to refer to</span>
+  <span class="cmt">// variables for some fields: those that are bound on matching, which have type +[T].</span>
+
+  <span class="kw">def</span> main(args: <span class="std">Array</span>[<span class="std">String</span>]) {
+    <span class="kw">val</span> m = <span class="kw">new</span> CommandMonitor4
+
+    m.addObjEvent(COMMAND(<span class="lit">"STOP_DRIVING"</span>, <span class="num">1</span>, <span class="num">1000</span>))
+    m.addObjEvent(COMMAND(<span class="lit">"START_CAMERA"</span>, <span class="num">2</span>, <span class="num">2000</span>))
+    m.addObjEvent(COMMAND(<span class="lit">"TURN_ANTENNA"</span>, <span class="num">3</span>, <span class="num">3000</span>))
+    m.addObjEvent(FAIL(<span class="lit">"STOP_DRIVING"</span>, <span class="num">1</span>, <span class="num">4000</span>))
+    m.addObjEvent(SUCCESS(<span class="lit">"START_CAMERA"</span>, <span class="num">2</span>, <span class="num">5000</span>))
+    m.addObjEvent(SUCCESS(<span class="lit">"START_CAMERA"</span>, <span class="num">2</span>, <span class="num">6000</span>))
+    m.addObjEvent(SUCCESS(<span class="lit">"START_DRIVING"</span>, <span class="num">4</span>, <span class="num">7000</span>))
+    m.addObjEvent(END())
+  }
+}</pre></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="rete"><span>rete</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="rete.Contract" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ContractextendsAnyRef"></a>
+      <a id="Contract:Contract"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Contract.html"><span class="name">Contract</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.package@ContractextendsAnyRef" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class offers features for testing LogFire - or for testing monitors.</p><div class="fullcomment"><div class="comment cmt"><p>This class offers features for testing LogFire - or for testing monitors. A test
+class should extend this class to get access to the test methods.
+</p></div></div>
+    </li><li name="rete.Fact" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="FactextendsAnyRef"></a>
+      <a id="Fact:Fact"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Fact.html"><span class="name">Fact</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.package@FactextendsAnyRef" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class represents a fact that has been added to the fact memory with
+the <code>addFact</code> method or one of the <code>addMapFact</code> methods.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>This class represents a fact that has been added to the fact memory with
+the <code>addFact</code> method or one of the <code>addMapFact</code> methods.
+Each of these methods return the fact they add. The main purpose of holding
+on to a fact is to later be able to remove it with the <code>remove()</code>
+method.
+</p></div></div>
+    </li><li name="rete.History" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="HistoryextendsProductwithSerializable"></a>
+      <a id="History:History"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="History.html"><span class="name">History</span></a><span class="params">(<span name="fact">fact: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>]</span>, <span name="eventNumber">eventNumber: <span class="extype" name="scala.Int">Int</span></span>, <span name="event">event: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>]</span>, <span name="rule">rule: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="histories">histories: <span class="extype" name="scala.List">List</span>[<a href="History.html" class="extype" name="rete.History">History</a>]</span>, <span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.package@HistoryextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class represents the history of a created fact.</p><div class="fullcomment"><div class="comment cmt"><p>This class represents the history of a created fact. The history outlines what event lead to
+the creation of the fact, what rule created it; and finally other relevant events, rules fired,
+and facts created (the <i>cone of influence</i>).
+</p></div><dl class="paramcmts block"><dt class="param">fact</dt><dd class="cmt"><p>the generated fact.</p></dd><dt class="param">eventNumber</dt><dd class="cmt"><p>position of triggering event in input trace.</p></dd><dt class="param">event</dt><dd class="cmt"><p>the event causing the rule to fire.</p></dd><dt class="param">rule</dt><dd class="cmt"><p>the rule that fired.</p></dd><dt class="param">histories</dt><dd class="cmt"><p>the histories of the previous events, rules, and facts.</p></dd><dt class="param">message</dt><dd class="cmt"><p>an error message in case the history was created due to a failure.</p></dd></dl></div>
+    </li><li name="rete.Line" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="LineextendsProductwithSerializable"></a>
+      <a id="Line:Line"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Line.html"><span class="name">Line</span></a><span class="params">(<span name="eventNumber">eventNumber: <span class="extype" name="scala.Int">Int</span></span>, <span name="event">event: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>]</span>, <span name="rule">rule: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="fact">fact: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.package@LineextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class represents the creation of a fact during monitoring, recorded as a line
+in a history (i.e.</p><div class="fullcomment"><div class="comment cmt"><p>This class represents the creation of a fact during monitoring, recorded as a line
+in a history (i.e. an error trace). It indicates what event was the cause, what rule was fired, and what fact
+was created.
+</p></div><dl class="paramcmts block"><dt class="param">eventNumber</dt><dd class="cmt"><p>position of event in input trace.</p></dd><dt class="param">event</dt><dd class="cmt"><p>the event causing the rule to fire.</p></dd><dt class="param">rule</dt><dd class="cmt"><p>the rule that fired.</p></dd><dt class="param">fact</dt><dd class="cmt"><p>the generated fact.</p></dd></dl></div>
+    </li><li name="rete.Logic" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="LogicextendsRete"></a>
+      <a id="Logic:Logic"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Logic.html"><span class="name">Logic</span></a><span class="result"> extends <span class="extype" name="rete.Rete">Rete</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.package@LogicextendsRete" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class offers the DSL (Domain Specific Language) for writing rules.</p><div class="fullcomment"><div class="comment cmt"><p>This class offers the DSL (Domain Specific Language) for writing rules. It is extended by class
+<code>Monitor</code> and is therefore not meant to be used on its own.
+</p></div></div>
+    </li><li name="rete.Monitor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MonitorextendsLogic"></a>
+      <a id="Monitor:Monitor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Monitor.html"><span class="name">Monitor</span></a><span class="result"> extends <a href="Logic.html" class="extype" name="rete.Logic">Logic</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.package@MonitorextendsLogic" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class offers all of the main features of LogFire.</p><div class="fullcomment"><div class="comment cmt"><p>This class offers all of the main features of LogFire. See the package tutorial for a description of its use.
+It extends the classes <code>Options</code> - offering
+the user modifiable options - and <code>Logic</code>  - offering the DSL for writing rules. In addition
+this class offers methods for adding events and facts to the monitor state, as well as removing facts.
+Furthermore if offers methods for writing (serialize) the fact memory to permanent store and for loading facts from
+such permanent store.
+</p></div></div>
+    </li><li name="rete.MonitorFeeder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MonitorFeederextendsAnyRef"></a>
+      <a id="MonitorFeeder:MonitorFeeder"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MonitorFeeder.html"><span class="name">MonitorFeeder</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.package@MonitorFeederextendsAnyRef" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is meant to be extended by a class that instantiates and feeds a monitor
+with events.</p><div class="fullcomment"><div class="comment cmt"><p>This class is meant to be extended by a class that instantiates and feeds a monitor
+with events. The class makes it possible to write events and facts in the same way
+they are written in specifications.
+</p></div></div>
+    </li><li name="rete.MonitorResult" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MonitorResultextendsAnyRef"></a>
+      <a id="MonitorResult:MonitorResult"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MonitorResult.html"><span class="name">MonitorResult</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.package@MonitorResultextendsAnyRef" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class contains the results of a trace analysis as a list of messages
+(of type <code>String</code>).</p><div class="fullcomment"><div class="comment cmt"><p>This class contains the results of a trace analysis as a list of messages
+(of type <code>String</code>). If the <code>HISTORY</code> option is set to true, the result will
+also be recorded as a list of <code>History</code> objects.
+</p></div></div>
+    </li><li name="rete.Options" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="OptionsextendsAnyRef"></a>
+      <a id="Options:Options"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Options.html"><span class="name">Options</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.package@OptionsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class offers the LogFire options that a user can set.</p><div class="fullcomment"><div class="comment cmt"><p>This class offers the LogFire options that a user can set. Each
+option is a variable that (1) has a default value, and (2) can be
+re-assigned with an assignment statment. All options are spelled with
+capital letters. The <code>Monitor</code> class extends the <code>Options</code>
+class. Hence these option variables are accessible on a monitor object as public
+variables.
+</p></div></div>
+    </li><li name="rete.PC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PCextendsBasicConditionwithProductwithSerializable"></a>
+      <a id="PC:PC"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="PC.html"><span class="name">PC</span></a><span class="params">(<span name="constraints">constraints: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="rete.Pattern">Pattern</span>]</span>, <span name="label">label: <span class="extype" name="scala.Symbol">Symbol</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <span class="extype" name="rete.BasicCondition">BasicCondition</span> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.package@PCextendsBasicConditionwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="rete.Profiling" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ProfilingextendsAnyRef"></a>
+      <a id="Profiling:Profiling"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Profiling.html"><span class="name">Profiling</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#rete.package@ProfilingextendsAnyRef" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This trait offers methods for timing the execution of code fragments.</p><div class="fullcomment"><div class="comment cmt"><p>This trait offers methods for timing the execution of code fragments.
+It is useful for studying the efficiency of an implementation.
+</p></div></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
