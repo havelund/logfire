@@ -1,6 +1,6 @@
 # logfire
 
-LogFire is a Scala API (DSL) for rule-based programming,
+LogFire is a Scala API (internal DSL) for rule-based programming,
 based on the Rete algorithm. It is specifically designed for
 monitoring event streams, for example emitted by a running
 program, also referred to as runtime verification.

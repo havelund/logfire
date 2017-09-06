@@ -269,7 +269,7 @@ object Demo4 {
 
   def main(args: Array[String]) {
     val m = new CommandMonitor4
-
+    
     m.addObjEvent(COMMAND("STOP_DRIVING", 1, 1000))
     m.addObjEvent(COMMAND("START_CAMERA", 2, 2000))
     m.addObjEvent(COMMAND("TURN_ANTENNA", 3, 3000))

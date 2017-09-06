@@ -8,7 +8,7 @@ class HasNext extends Monitor {
 
   "r1" -- hasNext('i, true) |-> insert(Safe('i))
   "r2" -- Safe('i) & next('i) |-> remove(Safe)
-  "r3" -- next('i) & not(Safe('i)) |-> fail()
+  "r3" -- next('i) & not(Safe('i)) |-> error
 }
 
 object ApplyMonitor1 extends MonitorFeeder {
